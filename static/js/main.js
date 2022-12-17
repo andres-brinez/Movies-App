@@ -1,3 +1,3 @@
-console.log(conexion('trending/movie/week').then(
+console.log(conexion('movie/popular').then(
     data => console.log(data)
     ))
