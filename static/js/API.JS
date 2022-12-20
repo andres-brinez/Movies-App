@@ -16,7 +16,6 @@ const api = axios.create({
 
 
 async function conexion(endpoint){
-    console.log()
     const response = await api.get(endpoint)
     const data = response.data
     return data
