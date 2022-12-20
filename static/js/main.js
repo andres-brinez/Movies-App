@@ -102,26 +102,7 @@ export function categoryPage(){
     getMoviesBycategory()
 }
 
-// Se encarga de hacer la estructura HTML de scroll de peliculas
-async function scroll(data,container){
-    
-    container.innerHTML = ''
-    const peliculas = data.results
-    peliculas.forEach(pelicula => {
-        const {poster_path, title, id} = pelicula
-        const url = `https://image.tmdb.org/t/p/w200${poster_path}`
 
-        const div = document.createElement('div')
-        div.classList.add('caroulsel')
-        // agregar el id a la pelicula
-        div.setAttribute('id', id)
-        div.innerHTML = `<img src="${url}" alt="Imagen ${title}">` 
-
-        container.appendChild(div)
-    
-    })
-
-}
 
 async function getMoviesBycategory(){
 
@@ -146,22 +127,40 @@ async function getMoviesBycategory(){
         const peliculas = data.results
         containerCategoryMovies.innerHTML = ''
         peliculas.forEach(pelicula => {
+            console.log(pelicula)
             
-            const {backdrop_path,id}= pelicula
-            console.log(backdrop_path)
-            const url = `https://image.tmdb.org/t/p/w200${backdrop_path}`
+            const {poster_path,id}= pelicula
+    
+            const url = `https://image.tmdb.org/t/p/w200${poster_path}`
             const div = document.createElement('div')
             div.classList.add('title-category')
             div.innerHTML = `<img src="${url}" alt="Imagen ${id}">`
             containerCategoryMovies.appendChild(div)
 
         })
-         
-
-        
 
         
     })
 }
 
 
+// Se encarga de hacer la estructura HTML de scroll de peliculas
+async function scroll(data,container){
+    
+    container.innerHTML = ''
+    const peliculas = data.results
+    peliculas.forEach(pelicula => {
+        const {poster_path, title, id} = pelicula
+        const url = `https://image.tmdb.org/t/p/w200${poster_path}`
+
+        const div = document.createElement('div')
+        div.classList.add('caroulsel')
+        // agregar el id a la pelicula
+        div.setAttribute('id', id)
+        div.innerHTML = `<img src="${url}" alt="Imagen ${title}">` 
+
+        container.appendChild(div)
+    
+    })
+
+}
