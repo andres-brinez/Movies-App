@@ -1,6 +1,8 @@
 /* Esto para evitar llamar a las funciones automáticamente para que se ejecuten, 
 sino que lo podamos borrar en el futuro y podamos en el file de navigation.js, 
 llamarlas cuando location y hashchange nos avisen que estamos en la vista principal o en alguna otra vista */
+import { getPopularMovies,getMoviesTrending,getCategories,getUpcomingMovies } from "./main.js";
+
 
 function navigation() {
     console.log('navigation');
@@ -25,6 +27,10 @@ function navigation() {
 
     else{
         console.log('home');
+        getPopularMovies()
+        getMoviesTrending()
+        getCategories()
+        getUpcomingMovies()
     }
 
 

@@ -1,11 +1,12 @@
 import { slider } from "./slider.js";
 
 const  containerSlider= document .querySelector('.slideshow-container' );
-const  containerTrending= document .querySelector('.snap' );
+const  containerTrending= document .querySelector('.container-trending' );
 const containerCategories= document .querySelector('.container-categories' );
+const containerUpcoming= document .querySelector('.container-upcoming' );
 
 
-function getPopularMovies(){
+export  function getPopularMovies(){
     conexion('movie/popular').then((data) => {
         containerSlider.innerHTML = ''
         const peliculas = data.results
@@ -42,7 +43,7 @@ function getPopularMovies(){
     
 }
 
-function getMoviesTrending(){
+export function getMoviesTrending(){
     conexion('trending/movie/day').then((data) => {
         containerTrending.innerHTML = ''
         const peliculas = data.results
@@ -64,7 +65,7 @@ function getMoviesTrending(){
 
 }
 
-function getCategories(){
+export function getCategories(){
     conexion('genre/movie/list').then((data) => {
         containerCategories.innerHTML = ''
         const categorias = data.genres
@@ -84,6 +85,19 @@ function getCategories(){
 
 }
 
-getPopularMovies()
-getMoviesTrending()
-getCategories()
+export function getUpcomingMovies(){
+    conexion(`movie/upcoming`).then((data) => {
+        containerUpcoming.innerHTML = ''
+        const peliculas = data.results
+        peliculas.forEach(pelicula => {
+            const {poster_path, title, id} = pelicula
+            const url = `https://image.tmdb.org/t/p/w500${poster_path}`
+            const div = document.createElement('div')
+            div.classList.add('caroulsel')
+            div.setAttribute('id', id)
+            div.innerHTML = `<img src="${url}" alt="Imagen ${title}">`
+            containerUpcoming.appendChild(div)
+        })
+    
+    })
+}

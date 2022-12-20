@@ -1,4 +1,4 @@
-#carousel {
+.carousel {
     /* Ensure that the contents flow horizontally */
     overflow-x: auto;
     white-space: nowrap;
@@ -9,22 +9,22 @@
     margin: 10px auto;
 }
 
-#carousel.vertical {
+.carousel.vertical {
     flex-direction: column;
 }
 
 /* 2018 spec - For Safari 11, Chrome 69+ */
-#carousel.snap {
+.carousel.snap {
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
     /* Needed to work on iOS Safari */
 }
 
-#carousel.snap>div {
+.carousel.snap>div {
     scroll-snap-align: center;
 }
 
-#carousel.snap.vertical {
+.carousel.snap.vertical {
     flex-direction: column;
     scroll-snap-type: y mandatory;
 }
@@ -32,14 +32,14 @@
 
 
 /* 2015 spec - For Firefox, Edge, IE */
-#carousel.snap {
+.carousel.snap {
     scroll-snap-type: mandatory;
     -ms-scroll-snap-type: mandatory;
     scroll-snap-points-x: repeat(100%);
     -ms-scroll-snap-points-x: repeat(100%);
 }
 
-#carousel.snap.vertical {
+.carousel.snap.vertical {
     scroll-snap-points-x: initial;
     -ms-scroll-snap-points-x: initial;
     scroll-snap-points-y: repeat(100%);
@@ -49,7 +49,7 @@
 
 
 
-#carousel>div {
+.carousel>div {
     min-width: 25%;
     min-height: 1;
     display: flex;
@@ -59,7 +59,7 @@
 
 }
 
-#carousel>div:first-child {
+.carousel>div:first-child {
     margin-left: 0;
 }
 
@@ -85,26 +85,26 @@
     border-radius: 4%;
 }
 
-#carousel>div img {
+.carousel>div img {
     width: 100%;
     height: 100%;
     background-size: cover;
 }
 
-#carousel::-webkit-scrollbar {
+.carousel::-webkit-scrollbar {
     height: 6px;
     
 
     /* width of the entire scrollbar */
 }
 
-#carousel::-webkit-scrollbar-track {
+.carousel::-webkit-scrollbar-track {
     background: #262626;
     margin-top: 100px;
     /* color of the tracking area */
 }
 
-#carousel::-webkit-scrollbar-thumb {
+.carousel::-webkit-scrollbar-thumb {
     background-color: #E13C2F;
     margin-top: 100px;
     
