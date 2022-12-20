@@ -1,10 +1,14 @@
 import { slider } from "./slider.js";
 
+const containerHome=document.querySelector(".container-Home")
 const  containerSlider= document .querySelector('.slideshow-container' );
 const  containerTrendingMovies= document .querySelector('.container-trending' );
 const  containerTrendingTV= document .querySelector('.container-trending-tv' );
 const containerCategories= document .querySelector('.container-categories' );
 const containerUpcoming= document .querySelector('.container-upcoming' );
+const containerCategoryMovies = document.querySelector('.container-category-movies');
+const cointainerTitle=document.querySelector(".title-container-category")
+
 
 
 
@@ -82,14 +86,24 @@ export function getCategories(){
             div.innerHTML = `<p>${name}</p>`
             containerCategories.appendChild(div)
 
+            div.addEventListener('click',()=>{
+                location.hash= `#category=${id}-${name}`
+            })
+
         })
 
     })
 
 }
 
+export function categoryPage(){
+
+    containerHome.classList.add("oculto")
+    getMoviesBycategory()
+}
+
 // Se encarga de hacer la estructura HTML de scroll de peliculas
-function scroll(data,container){
+async function scroll(data,container){
     
     container.innerHTML = ''
     const peliculas = data.results
@@ -108,3 +122,46 @@ function scroll(data,container){
     })
 
 }
+
+async function getMoviesBycategory(){
+
+    const url = location.hash.slice(1).toLocaleLowerCase().split('=')[1]
+    const id = url.split('-')[0]
+    /*usualmente un % seguido de dos números quieren decir que un string fue codificado para formar parte de un URI,
+    por cuestiones de evitar caracteres raros.
+    Se recomienda usar decodeURL para quitarlo */
+    let name = decodeURI(url.split('-')[1])
+    const newName= name.charAt(0).toUpperCase() + name.slice(1);
+
+    console.log(newName)
+    
+
+    
+
+
+    cointainerTitle.innerHTML = `<h2>${newName}</h2>`
+    
+    
+    conexion(`discover/movie?with_genres=${id}`).then((data) => {
+        const peliculas = data.results
+        containerCategoryMovies.innerHTML = ''
+        peliculas.forEach(pelicula => {
+            
+            const {backdrop_path,id}= pelicula
+            console.log(backdrop_path)
+            const url = `https://image.tmdb.org/t/p/w200${backdrop_path}`
+            const div = document.createElement('div')
+            div.classList.add('title-category')
+            div.innerHTML = `<img src="${url}" alt="Imagen ${id}">`
+            containerCategoryMovies.appendChild(div)
+
+        })
+         
+
+        
+
+        
+    })
+}
+
+

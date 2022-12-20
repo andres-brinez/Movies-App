@@ -36,6 +36,10 @@ header {
     font-family: 'Bebas Neue', cursive !important;
     font-size: 32px;
     font-weight: 400;
+}
+
+.logo a {
+    text-decoration: none;
     color: #E13C2F;
 }
 
