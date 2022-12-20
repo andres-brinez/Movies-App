@@ -2,6 +2,7 @@ import { slider } from "./slider.js";
 
 const  containerSlider= document .querySelector('.slideshow-container' );
 const  containerTrending= document .querySelector('.snap' );
+const containerCategories= document .querySelector('.container-categories' );
 
 
 function getPopularMovies(){
@@ -66,5 +67,26 @@ function getMoviesTrending(){
 
 }
 
+function getCategories(){
+    conexion('genre/movie/list').then((data) => {
+        containerCategories.innerHTML = ''
+        const categorias = data.genres
+        
+        categorias.forEach(categoria => {
+            const {name, id} = categoria
+
+            const div = document.createElement('div')
+            div.classList.add('category')
+            div.setAttribute('id', id)
+            div.innerHTML = `<p>${name}</p>`
+            containerCategories.appendChild(div)
+
+        })
+
+    })
+
+}
+
 getPopularMovies()
 getMoviesTrending()
+getCategories()
