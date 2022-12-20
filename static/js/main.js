@@ -1,9 +1,11 @@
 import { slider } from "./slider.js";
 
 const  containerSlider= document .querySelector('.slideshow-container' );
-const  containerTrending= document .querySelector('.container-trending' );
+const  containerTrendingMovies= document .querySelector('.container-trending' );
+const  containerTrendingTV= document .querySelector('.container-trending-tv' );
 const containerCategories= document .querySelector('.container-categories' );
 const containerUpcoming= document .querySelector('.container-upcoming' );
+
 
 
 export  function getPopularMovies(){
@@ -45,7 +47,15 @@ export  function getPopularMovies(){
 
 export function getMoviesTrending(){
     conexion('trending/movie/day').then((data) => {
-        scroll(data,containerTrending)
+        scroll(data,containerTrendingMovies)
+
+    })
+
+}
+
+export function getTvTrending(){
+    conexion('trending/tv/day').then((data) => {
+        scroll(data,containerTrendingTV)
 
     })
 
@@ -85,7 +95,7 @@ function scroll(data,container){
     const peliculas = data.results
     peliculas.forEach(pelicula => {
         const {poster_path, title, id} = pelicula
-        const url = `https://image.tmdb.org/t/p/w500${poster_path}`
+        const url = `https://image.tmdb.org/t/p/w200${poster_path}`
 
         const div = document.createElement('div')
         div.classList.add('caroulsel')
