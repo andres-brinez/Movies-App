@@ -85,3 +85,41 @@ header {
     right: 12px;
     cursor: pointer;
 }
+
+/* CATEGORIES */
+
+.categories{
+    width: 80%;
+    margin: auto;
+}
+
+.categories h2 {
+    text-align: center;
+    font-size: 55px;
+    font-weight: 600;
+    padding: 100px 0 20px 0;
+
+}
+
+.container-categories {
+
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.category{
+    margin: 0 10px;
+    margin-bottom: 50px;
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+    background-color: #333333;
+    border-radius: 8px;
+}
+
+.category:hover {
+    background-color: #E13C2F;
+}
+
