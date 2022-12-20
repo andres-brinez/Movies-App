@@ -9,9 +9,7 @@ function getPopularMovies(){
     conexion('movie/popular').then((data) => {
         containerSlider.innerHTML = ''
         const peliculas = data.results
-        
-        
-        console.log(peliculas)
+            
         peliculas.forEach(pelicula => {
             const {poster_path, title, id} = pelicula
             const url = `https://image.tmdb.org/t/p/w500${poster_path}`
@@ -46,7 +44,6 @@ function getPopularMovies(){
 
 function getMoviesTrending(){
     conexion('trending/movie/day').then((data) => {
-        console.log(data)
         containerTrending.innerHTML = ''
         const peliculas = data.results
         peliculas.forEach(pelicula => {
