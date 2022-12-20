@@ -123,3 +123,10 @@ header {
     background-color: #E13C2F;
 }
 
+.oculto{
+    display: none;
+}
+
+.see{
+    display: block;
+}
