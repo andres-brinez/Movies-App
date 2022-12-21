@@ -134,3 +134,14 @@ header {
 .see{
     display: block;
 }
+
+footer{
+    border-top: solid 1px #44424B;
+}
+
+footer p{
+
+    text-align: center;
+    padding: 20px;
+    font-size: 25px;
+}
