@@ -1,1 +1,1 @@
-const sellAll= document.querySelectorAll('seeAll')
+const sellAll= document.querySelectorAll('.seeAll')
