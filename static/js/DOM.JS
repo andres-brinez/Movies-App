@@ -1,0 +1,1 @@
+const sellAll= document.querySelectorAll('seeAll')

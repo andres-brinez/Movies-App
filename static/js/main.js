@@ -210,10 +210,6 @@ export function getMovieBySearch(){
 
 
 
-
-
-
-
 // Se encarga de hacer la estructura HTML de scroll de peliculas
 async function scroll(data,container){
     

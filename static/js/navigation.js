@@ -61,5 +61,9 @@ iconSearch.addEventListener('click',()=>{
 
 })
 
+console.log(sellAll)
+
+
+
 
 
