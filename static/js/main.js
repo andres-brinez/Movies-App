@@ -1,13 +1,15 @@
 import { slider } from "./slider.js";
 
 const containerHome=document.querySelector(".container-Home")
-const  containerSlider= document .querySelector('.slideshow-container' );
-const  containerTrendingMovies= document .querySelector('.container-trending' );
-const  containerTrendingTV= document .querySelector('.container-trending-tv' );
+const containerSlider= document .querySelector('.slideshow-container' );
+const containerTrendingMovies= document .querySelector('.container-trending' );
+const containerTrendingTV= document .querySelector('.container-trending-tv' );
 const containerCategories= document .querySelector('.container-categories' );
 const containerUpcoming= document .querySelector('.container-upcoming' );
 const containerCategoryMovies = document.querySelector('.container-category-movies');
 const cointainerTitle=document.querySelector(".title-container-category")
+const containerMovieSearch = document.querySelector('.container-search-movies');
+const containerTitleSearch= document.querySelector(".title-container-search h2")
 
 
 
@@ -102,6 +104,20 @@ export function categoryPage(){
     getMoviesBycategory()
 }
 
+export function MoviePage(){
+    containerHome.classList.remove("see")
+    getMovieBySearch()
+
+}
+
+export function HomePage(){
+        containerHome.classList.remove("oculto")
+        getTvTrending()
+        getPopularMovies()
+        getMoviesTrending()
+        getCategories()
+        getUpcomingMovies()
+}
 
 
 async function getMoviesBycategory(){
@@ -112,14 +128,10 @@ async function getMoviesBycategory(){
     por cuestiones de evitar caracteres raros.
     Se recomienda usar decodeURL para quitarlo */
     let name = decodeURI(url.split('-')[1])
-    const newName= name.charAt(0).toUpperCase() + name.slice(1);
+    const newName= name.charAt(0).toUpperCase() + name.slice(1);  // pone en mayuscula la  primera letra
 
     console.log(newName)
     
-
-    
-
-
     cointainerTitle.innerHTML = `<h2>${newName}</h2>`
     
     
@@ -133,7 +145,7 @@ async function getMoviesBycategory(){
     
             const url = `https://image.tmdb.org/t/p/w200${poster_path}`
             const div = document.createElement('div')
-            div.classList.add('movie-category')
+            div.classList.add('container-movie')
             div.innerHTML = `<img src="${url}" alt="Imagen ${id}">`
             containerCategoryMovies.appendChild(div)
 
@@ -142,6 +154,64 @@ async function getMoviesBycategory(){
         
     })
 }
+
+
+
+export function getMovieBySearch(){
+
+    const search = document.querySelector('.input-search').value
+    
+
+    // console.log(search)
+
+    conexion(`search/movie?query=${search}`).then((data) => {
+        const peliculas = data.results
+        console.log(peliculas)
+
+        if (peliculas==0){
+            containerHome.classList.add("see")
+            location.hash="Home"  
+            alert('pelicula no encontrada')
+            
+
+        }
+
+        else{
+            
+            containerHome.classList.add("oculto")
+            
+            let title=search.charAt(0).toUpperCase() + search.slice(1); // pone en mayuscula la  primera letra
+            containerTitleSearch.textContent=title
+            containerMovieSearch.innerHTML = ''
+
+            peliculas.forEach(pelicula => {
+                console.log(pelicula)
+
+                const {poster_path,id}= pelicula
+                console.log(poster_path)
+                const url = `https://image.tmdb.org/t/p/w200${poster_path}`
+                const div = document.createElement('div')
+                div.classList.add('container-movie')
+                div.innerHTML = `<img src="${url}" alt="Imagen ${id}">`
+                containerMovieSearch.appendChild(div)
+
+            })
+            
+
+
+        }
+
+        
+
+    })
+
+}
+
+
+
+
+
+
 
 
 // Se encarga de hacer la estructura HTML de scroll de peliculas
