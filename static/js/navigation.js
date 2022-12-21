@@ -3,6 +3,8 @@ sino que lo podamos borrar en el futuro y podamos en el file de navigation.js,
 llamarlas cuando location y hashchange nos avisen que estamos en la vista principal o en alguna otra vista */
 import { getPopularMovies,getMoviesTrending,getCategories,getUpcomingMovies,getTvTrending,categoryPage } from "./main.js";
 
+const iconSearch= document.querySelector('.input-icon')
+const inputSearch=document.querySelector('.input-search')
 
 function navigation() {
     console.log('navigation');
@@ -48,4 +50,12 @@ tambien lo queremos llamar cuando cargue nuestra aplicación, la primera carga,
 
 window.addEventListener('load', navigation,false);
 window.addEventListener('hashchange', navigation,false);
+
+iconSearch.addEventListener('click',()=>{
+    
+    location.hash = '#search=' + inputSearch.value
+
+})
+
+
 
