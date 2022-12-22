@@ -13,7 +13,7 @@ const containerTitleSearch= document.querySelector(".title-container-search h2")
 
 
 
-export  function getPopularMovies(){
+function getPopularMovies(){
     conexion('movie/popular').then((data) => {
         containerSlider.innerHTML = ''
         const peliculas = data.results
@@ -50,7 +50,7 @@ export  function getPopularMovies(){
     
 }
 
-export function getMoviesTrending(){
+function getMoviesTrending(){
     conexion('trending/movie/day').then((data) => {
         scroll(data,containerTrendingMovies)
 
@@ -58,7 +58,7 @@ export function getMoviesTrending(){
 
 }
 
-export function getTvTrending(){
+function getTvTrending(){
     conexion('trending/tv/day').then((data) => {
         scroll(data,containerTrendingTV)
 
@@ -66,14 +66,14 @@ export function getTvTrending(){
 
 }
 
-export function getUpcomingMovies(){
+function getUpcomingMovies(){
     conexion(`movie/upcoming`).then((data) => {
         scroll(data,containerUpcoming)
     
     })
 }
 
-export function getCategories(){
+function getCategories(){
     conexion('genre/movie/list').then((data) => {
         containerCategories.innerHTML = ''
         const categorias = data.genres
@@ -119,6 +119,16 @@ export function HomePage(){
 
 }
 
+export function DetailsMoviePage(){
+
+    containerHome.classList.add("oculto")
+
+    const url = location.hash.slice(1).toLocaleLowerCase().split('=')[1]
+    const id = url.split('-')[0]
+    console.log(id)
+    getMovieDetails(id)
+}
+
 
 
 async function getMoviesBycategory(){
@@ -156,10 +166,7 @@ async function getMoviesBycategory(){
     })
 }
 
-
-
-
-export function getMovieBySearch(){
+async function getMovieBySearch(){
 
     const search = document.querySelector('.input-search').value
     
@@ -208,6 +215,30 @@ export function getMovieBySearch(){
     })
 
 }
+
+// obtiene la  pelicula con el id  
+
+async function  getMovieDetails(id){
+    
+    conexion(`movie/${id}`).then((data) =>{
+
+        const pelicula = data
+        console.log(pelicula)
+
+
+    })
+
+    // const {title, overview, poster_path, release_date, vote_average, genres} = data
+
+    // const url = `https://image.tmdb.org/t/p/w200${poster_path}`
+
+    // const div = document.createElement('div')
+
+
+
+}
+
+
 
 
 
