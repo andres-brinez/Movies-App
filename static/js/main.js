@@ -13,7 +13,6 @@ const containerTitleSearch= document.querySelector(".title-container-search h2")
 
 
 
-
 export  function getPopularMovies(){
     conexion('movie/popular').then((data) => {
         containerSlider.innerHTML = ''
@@ -112,12 +111,14 @@ export function MoviePage(){
 
 export function HomePage(){
         containerHome.classList.remove("oculto")
-        getTvTrending()
         getPopularMovies()
         getMoviesTrending()
-        getCategories()
+        getTvTrending()
         getUpcomingMovies()
+        getCategories()
+
 }
+
 
 
 async function getMoviesBycategory(){
@@ -154,6 +155,7 @@ async function getMoviesBycategory(){
         
     })
 }
+
 
 
 
@@ -209,7 +211,6 @@ export function getMovieBySearch(){
 
 
 
-
 // Se encarga de hacer la estructura HTML de scroll de peliculas
 async function scroll(data,container){
     
@@ -230,3 +231,4 @@ async function scroll(data,container){
     })
 
 }
+

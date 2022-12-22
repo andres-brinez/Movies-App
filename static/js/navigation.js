@@ -13,13 +13,8 @@ function navigation() {
     // obtener cantidad de letras
 
 
-    
 
-    if (location.hash.startsWith("#trends")){
-        console.log('trends');
-    }
-
-    else if (location.hash.startsWith("#search")){
+    if (location.hash.startsWith("#search")){
         console.log('search');
         MoviePage()
         
@@ -61,7 +56,9 @@ iconSearch.addEventListener('click',()=>{
 
 })
 
-console.log(sellAll)
+
+
+
 
 
 
