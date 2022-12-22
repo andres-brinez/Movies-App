@@ -228,25 +228,32 @@ async function  getMovieDetails(id){
 
         const {title, overview, poster_path, tagline, vote_average, runtime,release_date} = pelicula
 
+        const [año, _] = release_date.split('-');
+        
+
+        
         const url = `https://image.tmdb.org/t/p/w200${poster_path}`
 
         const div = document.createElement('div')
         div.innerHTML = `
         <div class="information-main">
             <div class="img-poster">
-            <img src="${url}" alt="Imagen ${title}">
+                <img src="${url}" alt="Imagen ${title}">
             </div>
             <div class="information">
-            <h2 class="title">${title}</h2>
-            <p class="tagline">${tagline}</p>
-            <div class="details">
-                <img src="" alt="Estrella">
-                <p class="vote">${vote_average}</p>
-                <p class="duracion">${runtime}</p>
-                <p class="date">${release_date}</p>
-            </div>
-            <p class="description">${overview}</p>
-            
+                <h2 class="title-movie-detail">${title}</h2>
+                <p class="tagline">${tagline}</p>
+                <div class="details"> 
+                    <div class="details_votes">
+                        <svg width="32" height="29" viewBox="0 0 32 29" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M16 0L19.5922 11.0557H31.2169L21.8123 17.8885L25.4046 28.9443L16 22.1115L6.59544 28.9443L10.1877 17.8885L0.783095 11.0557H12.4078L16 0Z" fill="#E13C2F"/>
+                        </svg>
+                        <p class="vote">${vote_average.toFixed(1) * 10}% </p>
+                    </div>
+                    <p class="duracion">${runtime}</p>
+                    <p class="date">${año}</p>
+                </div>
+                <p class="description">${overview}</p>
             </div>
         </div`
 
