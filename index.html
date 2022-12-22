@@ -106,7 +106,12 @@
     </div>
   </section>
 
-  
+
+  <section class="container-details-movie">
+
+    
+
+  </section>
 
   <!-- <div class="cointaner-movie">
     <div class="container-movie">
@@ -124,7 +129,7 @@
         <p class="budget"></p>
 
 
-  </div> -->
+    </div> -->
 
   <footer>
     <p>Andres Briñez Diciembre 2022</p>
@@ -145,6 +150,7 @@
   <script>
     function imgSeleccionada(id){
       // conocer el objeto del cual se llama la funcion
+      console.log(this);
       location.hash= `#movie=${id}`
       console.log(id);
   }

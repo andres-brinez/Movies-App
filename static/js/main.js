@@ -10,6 +10,7 @@ const containerCategoryMovies = document.querySelector('.container-category-movi
 const cointainerTitle=document.querySelector(".title-container-category")
 const containerMovieSearch = document.querySelector('.container-search-movies');
 const containerTitleSearch= document.querySelector(".title-container-search h2")
+const containerDetailsMovie = document.querySelector('.container-details-movie');
 
 
 
@@ -225,16 +226,38 @@ async function  getMovieDetails(id){
         const pelicula = data
         console.log(pelicula)
 
+        const {title, overview, poster_path, tagline, vote_average, runtime,release_date} = pelicula
+
+        const url = `https://image.tmdb.org/t/p/w200${poster_path}`
+
+        const div = document.createElement('div')
+        div.innerHTML = `
+        <div class="information-main">
+            <div class="img-poster">
+            <img src="${url}" alt="Imagen ${title}">
+            </div>
+            <div class="information">
+            <h2 class="title">${title}</h2>
+            <p class="tagline">${tagline}</p>
+            <div class="details">
+                <img src="" alt="Estrella">
+                <p class="vote">${vote_average}</p>
+                <p class="duracion">${runtime}</p>
+                <p class="date">${release_date}</p>
+            </div>
+            <p class="description">${overview}</p>
+            
+            </div>
+        </div`
+
+        containerDetailsMovie.appendChild(div)
+        
+
+
 
     })
 
-    // const {title, overview, poster_path, release_date, vote_average, genres} = data
-
-    // const url = `https://image.tmdb.org/t/p/w200${poster_path}`
-
-    // const div = document.createElement('div')
-
-
+ 
 
 }
 
