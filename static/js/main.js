@@ -26,7 +26,7 @@ export  function getPopularMovies(){
             div.classList.add('mySlides')
             div.classList.add('fade')
             div.innerHTML = `
-                <img src="${url}"class="slider-img" >
+                <img src="${url}" class="slider-img" alt="img ${id}" >
             `            
             containerSlider.appendChild(div)
         
@@ -224,7 +224,7 @@ async function scroll(data,container){
         div.classList.add('caroulsel')
         // agregar el id a la pelicula
         div.setAttribute('id', id)
-        div.innerHTML = `<img src="${url}" alt="Imagen ${title}">` 
+        div.innerHTML = `<img src="${url}" alt=" img ${id}">` 
 
         container.appendChild(div)
     
