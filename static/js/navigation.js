@@ -17,6 +17,7 @@ function navigation() {
     if (location.hash.startsWith("#search")){
         console.log('search');
         MoviePage()
+
         
     }
 
@@ -33,10 +34,17 @@ function navigation() {
         console.log('home');
         HomePage()
         
+        // console.log('imagenes',document.getElementsByTagName('img'))
+
+
     }
+    
 
 
 }
+
+
+
 
 /* este evento no solo lo queremos llamar cuando  cambie el hash, 
 tambien lo queremos llamar cuando cargue nuestra aplicación, la primera carga, 
@@ -46,6 +54,7 @@ window.addEventListener('load', navigation,false);
 // window.addEventListener('hashchange', navigation,false);
 
 window.addEventListener('hashchange',()=>{
+    
     navigation()
     
 })
@@ -55,6 +64,19 @@ iconSearch.addEventListener('click',()=>{
     location.hash = '#search=' + inputSearch.value
 
 })
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
