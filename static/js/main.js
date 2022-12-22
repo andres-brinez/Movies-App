@@ -266,7 +266,7 @@ async function  getMovieDetails(id){
 
 
 // Se encarga de hacer la estructura HTML de scroll de peliculas
-async function scroll(data,container){
+async function scroll(data,tipo){
     
     container.innerHTML = ''
     const peliculas = data.results
@@ -274,11 +274,12 @@ async function scroll(data,container){
         const {poster_path, title, id} = pelicula
         const url = `https://image.tmdb.org/t/p/w200${poster_path}`
 
+
         const div = document.createElement('div')
         div.classList.add('caroulsel')
         // agregar el id a la pelicula
         div.setAttribute('id', id)
-        div.innerHTML = `<img src="${url}" alt=" img ${title}" onclick="imgSeleccionada(${id})">` 
+        div.innerHTML = `<img src="${url}" alt=" img ${title}" onclick="imgSeleccionada(${id},${tipo})">` 
 
         container.appendChild(div)
     

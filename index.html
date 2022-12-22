@@ -148,11 +148,12 @@
   <script type="module" src="./static/js/main.js"></script>
   <script type="module" src="./static/js/navigation.js"></script>
   <script>
-    function imgSeleccionada(id){
+    function imgSeleccionada(id,container){
       // conocer el objeto del cual se llama la funcion
-      console.log(this);
       location.hash= `#movie=${id}`
+
       console.log(id);
+      console.log(container)
   }
   
   </script>
