@@ -18,10 +18,7 @@ export function slider (prevIcon, nextIcon){
         plusSlides(1)
     })
   
-  // Thumbnail image controls
-  function currentSlide(n) {
-    showSlides(slideIndex = n);
-  }
+ 
   
   function showSlides(n) {
     var i;
@@ -56,7 +53,7 @@ export function slider (prevIcon, nextIcon){
     myIndex++;
     if (myIndex > x.length) {myIndex = 1}    
     x[myIndex-1].style.display = "block";  
-    setTimeout(carousel, 3000); // Change image every 2 seconds
+    setTimeout(carousel, 4000); // Change image every 2 seconds
   }
   
 }
