@@ -101,6 +101,7 @@ function getCategories(){
 export function categoryPage(){
 
     containerHome.classList.add("oculto")
+    containerDetailsMovie.classList.add("oculto")
     getMoviesBycategory()
 }
 
@@ -123,6 +124,7 @@ export function HomePage(){
 export function DetailsMoviePage(){
 
     containerHome.classList.add("oculto")
+    containerDetailsMovie.classList.remove("oculto")
 
     const url = location.hash.slice(1).toLocaleLowerCase().split('=')[1]
     const id = url.split('-')[0]
@@ -224,17 +226,18 @@ async function  getMovieDetails(id){
     conexion(`movie/${id}`).then((data) =>{
 
         const pelicula = data
-        console.log(pelicula)
 
-        const {title, overview, poster_path, tagline, vote_average, runtime,release_date} = pelicula
+        const {title, overview, poster_path, tagline, vote_average, runtime,release_date,genres} = pelicula
+
+       
 
         const [año, _] = release_date.split('-');
-        
+    
 
-        
-        const url = `https://image.tmdb.org/t/p/w200${poster_path}`
+        const url = `https://image.tmdb.org/t/p/w500${poster_path}`
 
         const div = document.createElement('div')
+        
         div.innerHTML = `
         <div class="information-main">
             <div class="img-poster">
@@ -250,17 +253,38 @@ async function  getMovieDetails(id){
                         </svg>
                         <p class="vote">${vote_average.toFixed(1) * 10}% </p>
                     </div>
-                    <p class="duracion">${runtime}</p>
+                    <p class="duracion">${runtime}min </p>
                     <p class="date">${año}</p>
+                
                 </div>
-                <p class="description">${overview}</p>
+                <div class="generosMovieDetail">
+                    <h2 class="category-title">Categories</h2>
+                    <div class="containerCategoriesMovieDetail">
+                    </div>
+                </div>
+                <p class="description">${overview }</p>
             </div>
         </div`
 
+    
+    
         containerDetailsMovie.appendChild(div)
+
+        genres.forEach(genre =>{
+            const {name,id} = genre
+            console.log(name)
+            const genero = document.createElement('a') 
+            genero.classList.add('generoMovie')
+            genero.textContent = name
+            genero.href = `#category=${id}-${name}`
+            const contenedorGeneros= document.querySelector('.containerCategoriesMovieDetail')
+            contenedorGeneros.appendChild(genero)
+            console.log(contenedorGeneros.innerHTML)
+            
+            
+        })
+
         
-
-
 
     })
 
@@ -273,7 +297,7 @@ async function  getMovieDetails(id){
 
 
 // Se encarga de hacer la estructura HTML de scroll de peliculas
-async function scroll(data,tipo){
+async function scroll(data,container){
     
     container.innerHTML = ''
     const peliculas = data.results
@@ -286,7 +310,7 @@ async function scroll(data,tipo){
         div.classList.add('caroulsel')
         // agregar el id a la pelicula
         div.setAttribute('id', id)
-        div.innerHTML = `<img src="${url}" alt=" img ${title}" onclick="imgSeleccionada(${id},${tipo})">` 
+        div.innerHTML = `<img src="${url}" alt=" img ${title}" onclick="imgSeleccionada(${id})">` 
 
         container.appendChild(div)
     
