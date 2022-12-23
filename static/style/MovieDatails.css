@@ -100,19 +100,27 @@
     margin: 20px 0 ;
 }
 
-#title-cast{
+#title-cast,#title-trailer{
     
-    margin: 20px 0;
+    margin: 50px 0 20px 0;
     font-family: Ubuntu;
-    font-size: 40px;
+    font-size: 45px;
     font-weight: 700;
     line-height: 46px;
     letter-spacing: 0em;
-    text-align: left;
+    
 
 }
 
-
-.carousel{
+.container-details-movie .carousel{
     width: 100%;
 }
+
+.trailer{
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+
+
