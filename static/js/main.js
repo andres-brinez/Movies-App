@@ -224,6 +224,8 @@ async function getMovieBySearch(){
 async function  getMovieDetails(id){
     
     conexion(`movie/${id}`).then((data) =>{
+        containerDetailsMovie.innerHTML=''
+
 
         const pelicula = data
 
