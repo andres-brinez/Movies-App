@@ -45,15 +45,25 @@
 .details{
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    width: 30%;
+    margin-top: 15px;
+
+
+}
+
+.details > p {
+    margin-right: 15px;
+}
+
+.details svg {
+    /* margin-right: 10px; */
+    color: blue;
 }
 
 .details_votes{
     display:flex;
     justify-content: space-between;
     align-items: center;
-    
+    margin-right: 15px;
 }
 
 .generoMovieDetails h2{
