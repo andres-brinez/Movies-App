@@ -303,18 +303,7 @@ async function  getMovieDetails(id){
             
             scroll(datosCast,containercast,'actor')
 
-            // datosCast.forEach(cast => {
-            //     const {name, profile_path, id} = cast
-            //     const url = `https://image.tmdb.org/t/p/w200${profile_path}`
-            //     const divCast = document.createElement('div')
-            //     divCast.classList.add('cast')
-            //     divCast.innerHTML = `
-            //     <a href="#profile=${id}"><img src="${url}" alt="Imagen ${name}">
-            //     <p class="name-cast">${name}</p></a>
-            //     `
-            //     div.appendChild(divCast)
-            // })
-
+            
         })
     })
 }
