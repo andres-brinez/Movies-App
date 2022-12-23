@@ -331,6 +331,44 @@ async function  getMovieDetails(id){
             
             
         })
+
+        // Peliculas recomendadas
+
+        conexion(`movie/${id}/recommendations`).then((data)=>{
+
+            
+
+            const div = document.createElement('div')
+            div.classList.add('container-recomendadas')
+            
+            div.innerHTML = `
+            <h2 id="title-recomendadas">Related Movies</h2>
+            <div class="containerMoviesRelated containerMovies">
+            </div>
+            `
+            containerDetailsMovie.appendChild(div)
+
+            const containerRecomendadas = document.querySelector('.containerMoviesRelated')
+
+            const peliculas = data.results
+            // containerRecomendadas.innerHTML = ''
+            peliculas.forEach(pelicula => {
+                
+                const {poster_path,id}= pelicula
+        
+                const url = `https://image.tmdb.org/t/p/w200${poster_path}`
+                const div = document.createElement('div')
+                div.classList.add('container-movie')
+                div.innerHTML = `<img src="${url}" alt="Imagen ${id}" onclick="imgSeleccionada(${id})">`
+
+                containerRecomendadas.appendChild(div)
+                
+
+            })
+
+            
+
+        })
     })
 }
 
