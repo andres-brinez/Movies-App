@@ -267,7 +267,6 @@ async function  getMovieDetails(id){
                 <p class="description">${overview }</p>
             </div>
         </div>
-        <h2 id="title-cast">Cast</h2>
         
         
         `
@@ -293,16 +292,38 @@ async function  getMovieDetails(id){
 
             const datosCast = data.cast
 
-            const div = document.createElement('div')
-            div.classList.add('container-cast')
-            div.classList.add('snap')
-            div.classList.add('carousel')
+            if (datosCast.length<=0){
+                console.log('no hay actores')
+            }
 
-            containerDetailsMovie.appendChild(div)
+            else{
 
-            const containercast= document.querySelector('.container-cast')
-            
-            scroll(datosCast,containercast,'actor')
+                const divCarousel = document.createElement('div')
+                const divCast= document.createElement('div')
+
+                divCast.classList.add('container-cast')
+                divCarousel.classList.add('snap')
+                divCarousel.classList.add('carousel')
+
+                // Agrega titulo al container
+                const title= document.createElement('h2')
+                title.textContent='Actors'
+                title.classList.add('title-cast')
+                divCast.appendChild(title)
+                
+
+                containerDetailsMovie.appendChild(divCast)
+                divCast.appendChild(divCarousel)
+
+
+
+                
+
+                
+                
+                
+                scroll(datosCast,divCarousel,'actor')
+            }
 
             
         })
@@ -382,6 +403,8 @@ async function scroll(data,container,tipo){
     container.innerHTML = ''
 
     if (tipo=='actor'){
+        
+
         data.forEach(cast => {
                 const {name, profile_path, id} = cast
                 const url = `https://image.tmdb.org/t/p/w200${profile_path}`
@@ -391,6 +414,7 @@ async function scroll(data,container,tipo){
                 divCast.innerHTML = `
                 <a  href="#profile=${id}"><img src="${url}" class="img-cast" alt="Imagen ${name}">
                 `
+                
                 container.appendChild(divCast)
             })
     }
