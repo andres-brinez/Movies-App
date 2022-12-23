@@ -266,7 +266,10 @@ async function  getMovieDetails(id){
                 </div>
                 <p class="description">${overview }</p>
             </div>
-        </div
+        </div>
+        <h2 id="title-cast">Cast</h2>
+        
+        
         `
 
         containerDetailsMovie.appendChild(div)
@@ -285,12 +288,10 @@ async function  getMovieDetails(id){
             
         })
 
+        // ACTORES
         conexion(`movie/${id}/credits`).then((data)=>{
 
             const datosCast = data.cast
-
-            // console.log("data cast", data.cast);
-            console.log(datosCast)
 
             const div = document.createElement('div')
             div.classList.add('container-cast')
