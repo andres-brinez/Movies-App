@@ -264,10 +264,9 @@ async function  getMovieDetails(id){
                 </div>
                 <p class="description">${overview }</p>
             </div>
-        </div`
+        </div
+        `
 
-    
-    
         containerDetailsMovie.appendChild(div)
 
         genres.forEach(genre =>{
@@ -284,9 +283,39 @@ async function  getMovieDetails(id){
             
         })
 
-        
+        conexion(`movie/${id}/credits`).then((data)=>{
+
+            const datosCast = data.cast
+
+            // console.log("data cast", data.cast);
+            console.log(datosCast)
+
+            const div = document.createElement('div')
+            div.classList.add('container-cast')
+
+            datosCast.forEach(cast => {
+                const {name, profile_path, id} = cast
+                const url = `https://image.tmdb.org/t/p/w200${profile_path}`
+                const divCast = document.createElement('div')
+                divCast.classList.add('cast')
+                divCast.innerHTML = `
+                <a href="#profile=${id}"><img src="${url}" alt="Imagen ${name}">
+                <p class="name-cast">${name}</p></a>
+                `
+                div.appendChild(divCast)
+            })
+
+            containerDetailsMovie.appendChild(div)
+
+
+        })
+
 
     })
+
+    
+    
+
 
  
 
