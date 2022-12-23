@@ -100,7 +100,7 @@
     margin: 20px 0 ;
 }
 
-#title-cast,#title-trailer{
+#title-cast,#title-trailer,#title-recomendadas{
     
     margin: 50px 0 20px 0;
     font-family: Ubuntu;
@@ -120,6 +120,10 @@
     display: flex;
     justify-content: center;
     margin: 20px 0;
+}
+
+.containerMoviesRelated{
+    width: 100%;
 }
 
 
