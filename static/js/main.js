@@ -292,33 +292,29 @@ async function  getMovieDetails(id){
 
             const div = document.createElement('div')
             div.classList.add('container-cast')
-
-            datosCast.forEach(cast => {
-                const {name, profile_path, id} = cast
-                const url = `https://image.tmdb.org/t/p/w200${profile_path}`
-                const divCast = document.createElement('div')
-                divCast.classList.add('cast')
-                divCast.innerHTML = `
-                <a href="#profile=${id}"><img src="${url}" alt="Imagen ${name}">
-                <p class="name-cast">${name}</p></a>
-                `
-                div.appendChild(divCast)
-            })
+            div.classList.add('snap')
+            div.classList.add('carousel')
 
             containerDetailsMovie.appendChild(div)
 
+            const containercast= document.querySelector('.container-cast')
+            
+            scroll(datosCast,containercast,'actor')
+
+            // datosCast.forEach(cast => {
+            //     const {name, profile_path, id} = cast
+            //     const url = `https://image.tmdb.org/t/p/w200${profile_path}`
+            //     const divCast = document.createElement('div')
+            //     divCast.classList.add('cast')
+            //     divCast.innerHTML = `
+            //     <a href="#profile=${id}"><img src="${url}" alt="Imagen ${name}">
+            //     <p class="name-cast">${name}</p></a>
+            //     `
+            //     div.appendChild(divCast)
+            // })
 
         })
-
-
     })
-
-    
-    
-
-
- 
-
 }
 
 
@@ -326,28 +322,50 @@ async function  getMovieDetails(id){
 
 
 // Se encarga de hacer la estructura HTML de scroll de peliculas
-async function scroll(data,container){
+async function scroll(data,container,tipo){
+
+    
     
     container.innerHTML = ''
-    const peliculas = data.results
-    peliculas.forEach(pelicula => {
-        const {poster_path, title, id} = pelicula
-        const url = `https://image.tmdb.org/t/p/w200${poster_path}`
+
+    if (tipo=='actor'){
+        data.forEach(cast => {
+                const {name, profile_path, id} = cast
+                const url = `https://image.tmdb.org/t/p/w200${profile_path}`
+                const divCast = document.createElement('div')
+                divCast.classList.add('cast')
+                divCast.classList.add('caroulsel')
+                divCast.innerHTML = `
+                <a href="#profile=${id}"><img src="${url}" alt="Imagen ${name}">
+                <p class="name-cast">${name}</p></a>
+                `
+                container.appendChild(divCast)
+            })
+    }
+
+    else{
+
+        const peliculas = data.results
+        peliculas.forEach(pelicula => {
+            const {poster_path, title, id} = pelicula
+            const url = `https://image.tmdb.org/t/p/w200${poster_path}`
 
 
-        const div = document.createElement('div')
-        div.classList.add('caroulsel')
-        // agregar el id a la pelicula
-        div.setAttribute('id', id)
-        div.innerHTML = `<img src="${url}" alt=" img ${title}" onclick="imgSeleccionada(${id})">` 
+            const div = document.createElement('div')
+            div.classList.add('caroulsel')
+            // agregar el id a la pelicula
+            div.setAttribute('id', id)
+            div.innerHTML = `<img src="${url}" alt=" img ${title}" onclick="imgSeleccionada(${id})">` 
 
-        container.appendChild(div)
+            container.appendChild(div)
+        
+        })
+    }
     
-    })
 
 }
 
-// funcion que obtiene todas las imagenes
+
 
 
 
