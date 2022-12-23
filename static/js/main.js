@@ -379,8 +379,6 @@ async function  getMovieDetails(id){
 // Se encarga de hacer la estructura HTML de scroll de peliculas
 async function scroll(data,container,tipo){
 
-    
-    
     container.innerHTML = ''
 
     if (tipo=='actor'){
@@ -391,8 +389,7 @@ async function scroll(data,container,tipo){
                 divCast.classList.add('cast')
                 divCast.classList.add('caroulsel')
                 divCast.innerHTML = `
-                <a href="#profile=${id}"><img src="${url}" alt="Imagen ${name}">
-                <p class="name-cast">${name}</p></a>
+                <a  href="#profile=${id}"><img src="${url}" class="img-cast" alt="Imagen ${name}">
                 `
                 container.appendChild(divCast)
             })

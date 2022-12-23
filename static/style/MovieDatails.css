@@ -54,10 +54,10 @@
     margin-right: 15px;
 }
 
-.details svg {
-    /* margin-right: 10px; */
-    color: blue;
+.tagline{
+    margin-top:30px;
 }
+
 
 .details_votes{
     display:flex;
@@ -125,6 +125,9 @@
 .container-details-movie .carousel{
     width: 100%;
 }
+
+
+
 
 .trailer{
     display: flex;
