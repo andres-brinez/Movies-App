@@ -134,8 +134,8 @@
     margin: 20px 0;
 }
 
-.containersRelated{
-    width: 100%;
+.containerRelated.containerMovies{
+    width: 100% !important;
 }
 
 

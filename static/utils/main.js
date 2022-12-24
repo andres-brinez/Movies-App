@@ -1,58 +1,5 @@
-function DetailsCast (data){
-
-    const datosCast = data.cast
-
-        if (datosCast.length<=0){
-            console.log('no hay actores')
-        }
-
-        else{
-
-            const divCarousel = document.createElement('div')
-            const divCast= document.createElement('div')
-
-            divCast.classList.add('container-cast')
-            divCarousel.classList.add('snap')
-            divCarousel.classList.add('carousel')
-
-            // Agrega titulo al container
-            const title= document.createElement('h2')
-            title.textContent='Actors'
-            title.classList.add('title-cast')
-            divCast.appendChild(title)
-            
-
-            containerDetails.appendChild(divCast)
-            divCast.appendChild(divCarousel)
-
-            scroll(datosCast,divCarousel,'actor')
-        }
-}
-
-function Trailer(data){
-
-    const trailer = data.results
-        
-        if (trailer.length<=0){
-            console.log('no hay trailer')
-        }
-
-        else{
-            const div = document.createElement('div')
-            div.classList.add('container-trailer')
-            div.innerHTML = `
-            <h2 id="title-trailer">Trailer</h2>
-            <div class="trailer">
-                <iframe width="80%" height="500" src="https://www.youtube.com/embed/${trailer[0].key}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            </div>
-            `
-            containerDetails.appendChild(div)
-        }
-
-}
-
 // Se encarga de hacer la estructura HTML de scroll  horzontal de peliculas
-function scroll(data,container,tipo){
+export function scroll(data,container,tipo){
 
     container.innerHTML = ''
 
@@ -90,7 +37,6 @@ function scroll(data,container,tipo){
     
 
 }
-
 export function EstructureInformationDetails(data,tipo){
 
     let datos={
@@ -177,6 +123,99 @@ export function EstructureInformationDetails(data,tipo){
     conexion(`${tipo}/${data.id}/videos`).then((data)=>{
             Trailer(data)
     })
+
+    conexion(`${tipo}/${data.id}/recommendations`).then((data)=>{
+
+        Recomend(data,tipo)
+
+    })
     
 
 }
+
+function DetailsCast (data){
+
+    const datosCast = data.cast
+
+        if (datosCast.length<=0){
+            console.log('no hay actores')
+        }
+
+        else{
+
+            const divCarousel = document.createElement('div')
+            const divCast= document.createElement('div')
+
+            divCast.classList.add('container-cast')
+            divCarousel.classList.add('snap')
+            divCarousel.classList.add('carousel')
+
+            // Agrega titulo al container
+            const title= document.createElement('h2')
+            title.textContent='Actors'
+            title.classList.add('title-cast')
+            divCast.appendChild(title)
+            
+
+            containerDetails.appendChild(divCast)
+            divCast.appendChild(divCarousel)
+
+            scroll(datosCast,divCarousel,'actor')
+        }
+}
+
+function Trailer(data){
+
+    const trailer = data.results
+        
+        if (trailer.length<=0){
+            console.log('no hay trailer')
+        }
+
+        else{
+            const div = document.createElement('div')
+            div.classList.add('container-trailer')
+            div.innerHTML = `
+            <h2 id="title-trailer">Trailer</h2>
+            <div class="trailer">
+                <iframe width="80%" height="500" src="https://www.youtube.com/embed/${trailer[0].key}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            `
+            containerDetails.appendChild(div)
+        }
+
+}
+
+function Recomend(data,tipo){
+    const div = document.createElement('div')
+    div.classList.add('container-recomendadas')
+        
+    div.innerHTML = `
+    <h2 id="title-recomendadas">Related Movies</h2>
+    <div class="containerRelated containerMovies">
+    </div>
+    `
+    containerDetails.appendChild(div)
+
+    const containerRecomendadas = document.querySelector('.containerRelated')
+
+    const peliculas = data.results
+    
+    peliculas.forEach(pelicula => {
+        
+        const {poster_path,id}= pelicula
+
+        const url = `https://image.tmdb.org/t/p/w200${poster_path}`
+        const div = document.createElement('div')
+        div.classList.add('container-movie')
+        div.innerHTML = `<img src="${url}" alt="Imagen ${id}" onclick="imgSeleccionada(${id},'${tipo}')">`
+
+        containerRecomendadas.appendChild(div)
+        
+
+    })
+
+}
+
+
+

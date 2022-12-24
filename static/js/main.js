@@ -1,5 +1,5 @@
 import { slider} from "./slider.js";
-import { EstructureInformationDetails } from "../utils/main.js";
+import { EstructureInformationDetails,scroll } from "../utils/main.js";
 
 
 export function categoryPage(){
@@ -42,7 +42,7 @@ export function DetailsMoviePage(){
 export function ProfilePage(){
     containerHome.classList.add("oculto")
     containerCategoryMoviesAll.classList.add('oculto')
-    containerDetailsMovie.classList.add("oculto")
+    containerDetails.classList.add("oculto")
     // containerProfile.classList.remove("oculto")
     getProfile()
 }
@@ -130,8 +130,6 @@ function  getDetails(id,tipo){
         })
 }
     
-
-
 function getPopularMovies(){
     conexion('movie/popular').then((data) => {
         containerSlider.innerHTML = ''
