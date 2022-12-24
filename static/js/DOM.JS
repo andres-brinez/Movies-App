@@ -1,2 +1,12 @@
-const images= document.getElementsByTagName('img')
-
+const containerHome=document.querySelector(".container-Home")
+const containerSlider= document .querySelector('.slideshow-container' );
+const containerTrendingMovies= document .querySelector('.container-trending' );
+const containerTrendingTV= document .querySelector('.container-trending-tv' );
+const containerCategories= document .querySelector('.container-categories' );
+const containerUpcoming= document .querySelector('.container-upcoming' );
+const containerCategoryMovies = document.querySelector('.container-category-movies');
+const containerCategoryMoviesAll=document.querySelector(".container-category")
+const cointainerTitle=document.querySelector(".title-container-category")
+const containerMovieSearch = document.querySelector('.container-search-movies');
+const containerTitleSearch= document.querySelector(".title-container-search h2")
+const containerDetailsMovie = document.querySelector('.container-details-movie');
