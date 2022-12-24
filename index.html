@@ -129,12 +129,18 @@
   <script type="module" src="./static/js/main.js"></script>
   <script type="module" src="./static/js/navigation.js"></script>
   <script>
-    function imgSeleccionada(id,container){
-      // conocer el objeto del cual se llama la funcion
-      location.hash= `#movie=${id}`
+    function imgSeleccionada(id,tipo){
+      
 
-      console.log(id);
-      console.log(container)
+      if (tipo=='tv'){
+        location.hash= `#tv=${id}`
+      }
+      else{
+        location.hash= `#movie=${id}`
+      } 
+
+
+      
   }
   
   </script>

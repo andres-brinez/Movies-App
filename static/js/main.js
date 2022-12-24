@@ -330,7 +330,7 @@ function getMoviesTrending(){
 
 function getTvTrending(){
     conexion('trending/tv/day').then((data) => {
-        scroll(data,containerTrendingTV)
+        scroll(data,containerTrendingTV,'tv')
 
     })
 
@@ -474,8 +474,7 @@ async function scroll(data,container,tipo){
             div.classList.add('caroulsel')
             // agregar el id a la pelicula
             div.setAttribute('id', id)
-            div.innerHTML = `<img src="${url}" alt=" img ${title}" onclick="imgSeleccionada(${id})">` 
-
+            div.innerHTML = `<img src="${url}" alt=" img ${title}" onclick="imgSeleccionada(${id},'${tipo}')">` 
             container.appendChild(div)
         
         })
