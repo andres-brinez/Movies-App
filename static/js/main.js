@@ -4,7 +4,8 @@ import { slider } from "./slider.js";
 export function categoryPage(){
 
     containerHome.classList.add("oculto")
-    containerDetailsMovie.classList.add("oculto")
+    containerDetails.classList.add("oculto")
+    containerCategoryMoviesAll.classList.remove('oculto')
     getMoviesBycategory()
 }
 
@@ -186,7 +187,7 @@ function EstructureInformationDetails(data,tipo){
 
 
     const div = document.createElement('div')
-            div.innerHTML = `
+    div.innerHTML = `
             <div class="information-main">
                 <div class="img-poster">
                     <img src="${url}" alt="Imagen ${datos.name}">
@@ -212,10 +213,24 @@ function EstructureInformationDetails(data,tipo){
                     </div>
                     <p class="description">${data.overview }</p>
                 </div>
-            </div>
-            `
+            </div>`
 
+    containerDetails.innerHTML = ''
     containerDetails.appendChild(div)
+
+    // Recorre los generos y  los muestra
+    data.genres.forEach(genre =>{
+        const {name,id} = genre
+        const genero = document.createElement('a') 
+        genero.classList.add('genero')
+        genero.textContent = name
+        genero.href = `#category=${id}-${name}`
+        const contenedorGeneros= document.querySelector('.containerCategoriesMovieDetail')
+        contenedorGeneros.appendChild(genero)
+        
+    })
+
+    
 
 }
 
