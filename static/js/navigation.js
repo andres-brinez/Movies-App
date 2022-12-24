@@ -14,10 +14,10 @@ function navigation() {
         
     }
 
-    else if (location.hash.startsWith("#movie")){
-        console.log('movie');
+    else if (location.hash.startsWith("#movie") || location.hash.startsWith("#tv")){
         DetailsMoviePage()
     }
+ 
 
     else if (location.hash.startsWith("#profile")){
         console.log('profile');
