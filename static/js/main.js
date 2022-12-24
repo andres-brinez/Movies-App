@@ -129,21 +129,14 @@ function  getDetails(id,tipo){
         conexion(`tv/${id}`).then((data)=>{
             EstructureInformationDetails(data,'tv')
         })
-
     }
 
     else{
 
         conexion(`movie/${id}`).then((data)=>{
-
-            EstructureInformationDetails(data,'movie')  
-        })
-        
-        
+        EstructureInformationDetails(data,'movie')  
+        })   
     }
-
-
-
 }
 
 function EstructureInformationDetails(data,tipo){
@@ -152,10 +145,7 @@ function EstructureInformationDetails(data,tipo){
             'name': '',
             'tagline':'',
             'first_air_date': '',
-            'duracion':'',
-
-            // data.genres
-    
+            'duracion':'',    
     }
 
 
@@ -184,7 +174,6 @@ function EstructureInformationDetails(data,tipo){
 
     
     const url = `https://image.tmdb.org/t/p/w500${data.poster_path}`
-
 
     const div = document.createElement('div')
     div.innerHTML = `
@@ -218,6 +207,7 @@ function EstructureInformationDetails(data,tipo){
     containerDetails.innerHTML = ''
     containerDetails.appendChild(div)
 
+
     // Recorre los generos y  los muestra
     data.genres.forEach(genre =>{
         const {name,id} = genre
@@ -230,7 +220,66 @@ function EstructureInformationDetails(data,tipo){
         
     })
 
+    conexion(`${tipo}/${data.id}/credits`).then((data)=>{
+            DetailsCast(data)
+    })
+    conexion(`${tipo}/${data.id}/videos`).then((data)=>{
+            Trailer(data)
+    })
     
+
+}
+
+function DetailsCast (data){
+    
+    const datosCast = data.cast
+
+        if (datosCast.length<=0){
+            console.log('no hay actores')
+        }
+
+        else{
+
+            const divCarousel = document.createElement('div')
+            const divCast= document.createElement('div')
+
+            divCast.classList.add('container-cast')
+            divCarousel.classList.add('snap')
+            divCarousel.classList.add('carousel')
+
+            // Agrega titulo al container
+            const title= document.createElement('h2')
+            title.textContent='Actors'
+            title.classList.add('title-cast')
+            divCast.appendChild(title)
+            
+
+            containerDetails.appendChild(divCast)
+            divCast.appendChild(divCarousel)
+
+            scroll(datosCast,divCarousel,'actor')
+        }
+}
+
+function Trailer(data){
+
+    const trailer = data.results
+        
+        if (trailer.length<=0){
+            console.log('no hay trailer')
+        }
+
+        else{
+            const div = document.createElement('div')
+            div.classList.add('container-trailer')
+            div.innerHTML = `
+            <h2 id="title-trailer">Trailer</h2>
+            <div class="trailer">
+                <iframe width="80%" height="500" src="https://www.youtube.com/embed/${trailer[0].key}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            `
+            containerDetails.appendChild(div)
+        }
 
 }
 
