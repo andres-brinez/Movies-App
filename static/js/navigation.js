@@ -6,15 +6,9 @@ import { HomePage,categoryPage,MoviePage,DetailsMoviePage } from "./main.js";
 
 
 function navigation() {
-    console.log('navigation');
-    console.log(location.hash);
-
-    // obtener cantidad de letras
-
-
+    
 
     if (location.hash.startsWith("#search")){
-        console.log('search');
         MoviePage()
 
         
@@ -34,17 +28,10 @@ function navigation() {
     else{
         console.log('home');
         HomePage()
-        
-        // console.log('imagenes',document.getElementsByTagName('img'))
-
 
     }
     
-
-
 }
-
-
 
 
 /* este evento no solo lo queremos llamar cuando  cambie el hash, 
@@ -54,16 +41,10 @@ tambien lo queremos llamar cuando cargue nuestra aplicación, la primera carga,
 window.addEventListener('load', navigation,false);
 // window.addEventListener('hashchange', navigation,false);
 
-window.addEventListener('hashchange',()=>{
-    
-    navigation()
-    
-})
+window.addEventListener('hashchange',()=>{  navigation()}) // cuando haya cambio en el hash , url
 
 iconSearch.addEventListener('click',()=>{
-    
     location.hash = '#search=' + inputSearch.value
-
 })
 
 
