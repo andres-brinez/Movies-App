@@ -1,91 +1,6 @@
 import { slider } from "./slider.js";
 
 
-
-function getPopularMovies(){
-    conexion('movie/popular').then((data) => {
-        containerSlider.innerHTML = ''
-        const peliculas = data.results
-            
-        peliculas.forEach(pelicula => {
-            const {poster_path, title, id} = pelicula
-            const url = `https://image.tmdb.org/t/p/w500${poster_path}`
-
-            const div = document.createElement('div')
-            div.classList.add('mySlides')
-            div.classList.add('fade')
-            div.innerHTML = `
-                <img src="${url}" class="slider-img" alt="img ${id}" onclick="imgSeleccionada(${id})" >
-            `            
-            containerSlider.appendChild(div)
-        
-                
-        });
-
-        const controller=`
-        <a class="prev">&#10094;</a>
-        <a class="next">&#10095;</a>
-        `
-        containerSlider.insertAdjacentHTML('beforeend', controller)
-
-        const prevIcon = document.getElementsByClassName('prev')[0];
-        const nextIcon = document.getElementsByClassName('next')[0];
-        
-        slider(prevIcon, nextIcon)
-
-    })
-    
-    
-    
-}
-
-function getMoviesTrending(){
-    conexion('trending/movie/day').then((data) => {
-        scroll(data,containerTrendingMovies)
-
-    })
-
-}
-
-function getTvTrending(){
-    conexion('trending/tv/day').then((data) => {
-        scroll(data,containerTrendingTV)
-
-    })
-
-}
-
-function getUpcomingMovies(){
-    conexion(`movie/upcoming`).then((data) => {
-        scroll(data,containerUpcoming)
-    
-    })
-}
-
-function getCategories(){
-    conexion('genre/movie/list').then((data) => {
-        containerCategories.innerHTML = ''
-        const categorias = data.genres
-        
-        categorias.forEach(categoria => {
-            const {name, id} = categoria
-
-            const div = document.createElement('div')
-            div.classList.add('category')
-            div.setAttribute('id', id)
-            div.innerHTML = `<p>${name}</p>`
-            containerCategories.appendChild(div)
-
-            div.addEventListener('click',()=>{
-                location.hash= `#category=${id}-${name}`
-            })
-
-        })
-
-    })
-
-}
-
 export function categoryPage(){
 
     containerHome.classList.add("oculto")
@@ -124,7 +39,7 @@ export function DetailsMoviePage(){
 
 
 
-async function getMoviesBycategory(){
+function getMoviesBycategory(){
 
     const url = location.hash.slice(1).toLocaleLowerCase().split('=')[1]
     const id = url.split('-')[0]
@@ -159,7 +74,7 @@ async function getMoviesBycategory(){
     })
 }
 
-async function getMovieBySearch(){
+function getMovieBySearch(){
 
     const search = document.querySelector('.input-search').value
     
@@ -175,7 +90,6 @@ async function getMovieBySearch(){
             location.hash="Home"  
             alert('pelicula no encontrada')
             
-
         }
 
         else{
@@ -187,7 +101,6 @@ async function getMovieBySearch(){
             containerMovieSearch.innerHTML = ''
 
             peliculas.forEach(pelicula => {
-                console.log(pelicula)
 
                 const {poster_path,id}= pelicula
                 console.log(poster_path)
@@ -198,32 +111,22 @@ async function getMovieBySearch(){
                 containerMovieSearch.appendChild(div)
 
             })
-            
-
-
-        }
-
-        
-
+        }        
     })
-
 }
 
 // obtiene la  pelicula con el id  
 
-async function  getMovieDetails(id){
+function  getMovieDetails(id){
     
     conexion(`movie/${id}`).then((data) =>{
+
         containerDetailsMovie.innerHTML=''
 
-
-        const pelicula = data
-
-        const {title, overview, poster_path, tagline, vote_average, runtime,release_date,genres} = pelicula
+        const {title, overview, poster_path, tagline, vote_average, runtime,release_date,genres} = data
 
        
-
-        const [año, _] = release_date.split('-');
+        const [año, _] = release_date.split('-'); // divide la fecha por - y obtiene el primero parametro que es el año
     
 
         const url = `https://image.tmdb.org/t/p/w500${poster_path}`
@@ -263,6 +166,8 @@ async function  getMovieDetails(id){
 
         containerDetailsMovie.appendChild(div)
 
+        // Recorre los generos y  los muestra
+        contenedorGeneros.innerHTML=''
         genres.forEach(genre =>{
             const {name,id} = genre
             console.log(name)
@@ -272,8 +177,6 @@ async function  getMovieDetails(id){
             genero.href = `#category=${id}-${name}`
             const contenedorGeneros= document.querySelector('.containerCategoriesMovieDetail')
             contenedorGeneros.appendChild(genero)
-            console.log(contenedorGeneros.innerHTML)
-            
             
         })
 
@@ -305,13 +208,6 @@ async function  getMovieDetails(id){
                 containerDetailsMovie.appendChild(divCast)
                 divCast.appendChild(divCarousel)
 
-
-
-                
-
-                
-                
-                
                 scroll(datosCast,divCarousel,'actor')
             }
 
@@ -383,18 +279,101 @@ async function  getMovieDetails(id){
     })
 }
 
+function getPopularMovies(){
+    conexion('movie/popular').then((data) => {
+        containerSlider.innerHTML = ''
+        const peliculas = data.results
+            
+        peliculas.forEach(pelicula => {
+            const {poster_path, title, id} = pelicula
+            const url = `https://image.tmdb.org/t/p/w500${poster_path}`
+
+            const div = document.createElement('div')
+            div.classList.add('mySlides')
+            div.classList.add('fade')
+            div.innerHTML = `
+                <img src="${url}" class="slider-img" alt="img ${id}" onclick="imgSeleccionada(${id})" >
+            `            
+            containerSlider.appendChild(div)
+        
+                
+        });
+
+        const controller=`
+        <a class="prev">&#10094;</a>
+        <a class="next">&#10095;</a>
+        `
+        containerSlider.insertAdjacentHTML('beforeend', controller)
+
+        const prevIcon = document.getElementsByClassName('prev')[0];
+        const nextIcon = document.getElementsByClassName('next')[0];
+        
+        slider(prevIcon, nextIcon)
+
+    })
+    
+    
+    
+}
+
+function getMoviesTrending(){
+    conexion('trending/movie/day').then((data) => {
+        scroll(data,containerTrendingMovies)
+
+    })
+
+}
+
+function getTvTrending(){
+    conexion('trending/tv/day').then((data) => {
+        scroll(data,containerTrendingTV)
+
+    })
+
+}
+
+function getUpcomingMovies(){
+    conexion(`movie/upcoming`).then((data) => {
+        scroll(data,containerUpcoming)
+    
+    })
+}
+
+function getCategories(){
+    conexion('genre/movie/list').then((data) => {
+        
+        containerCategories.innerHTML = ''
+        
+        const categorias = data.genres
+        
+        categorias.forEach(categoria => {
+            const {name, id} = categoria
+
+            const div = document.createElement('div')
+            div.classList.add('category')
+            div.setAttribute('id', id)
+            div.innerHTML = `<p>${name}</p>`
+            containerCategories.appendChild(div)
+
+            div.addEventListener('click',()=>{
+                location.hash= `#category=${id}-${name}`
+            })
+
+        })
+
+    })
+
+}
 
 
 
-
-// Se encarga de hacer la estructura HTML de scroll de peliculas
+// Se encarga de hacer la estructura HTML de scroll  horzontal de peliculas
 async function scroll(data,container,tipo){
 
     container.innerHTML = ''
 
     if (tipo=='actor'){
         
-
         data.forEach(cast => {
                 const {name, profile_path, id} = cast
                 const url = `https://image.tmdb.org/t/p/w200${profile_path}`
@@ -403,8 +382,7 @@ async function scroll(data,container,tipo){
                 divCast.classList.add('caroulsel')
                 divCast.innerHTML = `
                 <a  href="#profile=${id}"><img src="${url}" class="img-cast" alt="Imagen ${name}">
-                `
-                
+                `        
                 container.appendChild(divCast)
             })
     }
@@ -415,7 +393,6 @@ async function scroll(data,container,tipo){
         peliculas.forEach(pelicula => {
             const {poster_path, title, id} = pelicula
             const url = `https://image.tmdb.org/t/p/w200${poster_path}`
-
 
             const div = document.createElement('div')
             div.classList.add('caroulsel')
