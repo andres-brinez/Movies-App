@@ -124,20 +124,11 @@ function getMovieBySearch(){
 }
 
 function  getDetails(id,tipo){
-
-    if (tipo=='tv'){
-        conexion(`tv/${id}`).then((data)=>{
-            EstructureInformationDetails(data,'tv')
+    conexion(`${tipo}/${id}`).then((data)=>{
+            EstructureInformationDetails(data,tipo)
         })
-    }
-
-    else{
-
-        conexion(`movie/${id}`).then((data)=>{
-        EstructureInformationDetails(data,'movie')  
-        })   
-    }
 }
+    
 
 function EstructureInformationDetails(data,tipo){
 
@@ -231,7 +222,7 @@ function EstructureInformationDetails(data,tipo){
 }
 
 function DetailsCast (data){
-    
+
     const datosCast = data.cast
 
         if (datosCast.length<=0){
