@@ -10,3 +10,6 @@ const cointainerTitle=document.querySelector(".title-container-category")
 const containerMovieSearch = document.querySelector('.container-search-movies');
 const containerTitleSearch= document.querySelector(".title-container-search h2")
 const containerDetailsMovie = document.querySelector('.container-details-movie');
+
+const iconSearch= document.querySelector('.input-icon')
+const inputSearch=document.querySelector('.input-search')
