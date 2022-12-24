@@ -228,7 +228,8 @@ function getProfile(){
     conexion(`person/${id}`).then((data)=>{
 
         let {name, biography, profile_path, birthday, place_of_birth,} = data
-        console.log(data)
+
+        const [Nacimiento, _] = data.birthday.split('-'); // divide la fecha por - y obtiene el primero parametro que es el año
 
         if(biography === ''){
             biography = 'No hay información disponible'
@@ -253,8 +254,7 @@ function getProfile(){
             <div class="container-info-profile">
                 <h2>${name}</h2>
 
-
-                <p class="birth-profile" >${place_of_birth} ${birthday}</p>
+                <p class="birth-profile" >${place_of_birth} ${Nacimiento}</p>
                 <p class="biography"></p>
                 
                 
