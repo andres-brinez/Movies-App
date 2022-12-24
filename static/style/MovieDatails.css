@@ -1,4 +1,4 @@
-.container-details-movie{
+.container-details{
     width: 76%;
     margin: 10px auto;
     padding: 10px;
@@ -35,7 +35,7 @@
     margin-left: 10px;
 }
 
-.title-movie-detail{
+.title-detail{
     text-align: left;
     font-size: 40px;
     margin: 0;
@@ -65,7 +65,7 @@
     margin-right: 15px;
 }
 
-.generoMovieDetails h2{
+.generoDetails h2{
     text-align: left;
     font-size: 40px;
     margin: 0;
@@ -80,7 +80,7 @@
 }
 
 
-.generoMovie{
+.genero{
     margin: 0 10px;
     margin-bottom: 0px;
     margin-bottom: 50px;
@@ -93,11 +93,11 @@
     text-decoration: none;
 }
 
-.generoMovie:first-child{
+.genero:first-child{
     margin-left: 0;
 }
 
-.generoMovie:hover {
+.genero:hover {
     background-color: #E13C2F;
   }
 
@@ -121,7 +121,7 @@
 
 }
 
-.container-details-movie .carousel{
+.container-details .carousel{
     width: 100%;
 }
 
@@ -134,7 +134,7 @@
     margin: 20px 0;
 }
 
-.containerMoviesRelated{
+.containersRelated{
     width: 100%;
 }
 
