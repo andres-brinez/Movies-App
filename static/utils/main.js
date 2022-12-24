@@ -187,34 +187,40 @@ function Trailer(data){
 }
 
 function Recomend(data,tipo){
-    const div = document.createElement('div')
-    div.classList.add('container-recomendadas')
+    console.log(data)
+    if (data.results.length==0){
+        console.log('no hay recomendadas')
         
-    div.innerHTML = `
-    <h2 id="title-recomendadas">Related Movies</h2>
-    <div class="containerRelated containerMovies">
-    </div>
-    `
-    containerDetails.appendChild(div)
-
-    const containerRecomendadas = document.querySelector('.containerRelated')
-
-    const peliculas = data.results
-    
-    peliculas.forEach(pelicula => {
-        
-        const {poster_path,id}= pelicula
-
-        const url = `https://image.tmdb.org/t/p/w200${poster_path}`
+    }
+    else{
         const div = document.createElement('div')
-        div.classList.add('container-movie')
-        div.innerHTML = `<img src="${url}" alt="Imagen ${id}" onclick="imgSeleccionada(${id},'${tipo}')">`
+        div.classList.add('container-recomendadas')
+            
+        div.innerHTML = `
+        <h2 id="title-recomendadas">Related Movies</h2>
+        <div class="containerRelated containerMovies">
+        </div>
+        `
+        containerDetails.appendChild(div)
 
-        containerRecomendadas.appendChild(div)
+        const containerRecomendadas = document.querySelector('.containerRelated')
+
+        const peliculas = data.results
         
+        peliculas.forEach(pelicula => {
+            
+            const {poster_path,id}= pelicula
 
-    })
+            const url = `https://image.tmdb.org/t/p/w200${poster_path}`
+            const div = document.createElement('div')
+            div.classList.add('container-movie')
+            div.innerHTML = `<img src="${url}" alt="Imagen ${id}" onclick="imgSeleccionada(${id},'${tipo}')">`
 
+            containerRecomendadas.appendChild(div)
+            
+
+        })
+    }
 }
 
 
