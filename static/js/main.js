@@ -29,6 +29,7 @@ export function HomePage(){
 export function DetailsMoviePage(){
 
     containerHome.classList.add("oculto")
+    profileContainer.classList.add('oculto')
     containerCategoryMoviesAll.classList.add('oculto')
     containerDetails.classList.remove("oculto")
 
@@ -43,6 +44,8 @@ export function ProfilePage(){
     containerHome.classList.add("oculto")
     containerCategoryMoviesAll.classList.add('oculto')
     containerDetails.classList.add("oculto")
+    profileContainer.classList.remove('oculto')
+
     // containerProfile.classList.remove("oculto")
     getProfile()
 }
