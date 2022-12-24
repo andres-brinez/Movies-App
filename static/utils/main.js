@@ -49,25 +49,26 @@ export function EstructureInformationDetails(data,tipo){
 
     if (tipo=='tv'){
 
-        const [año, _] = data.first_air_date.split('-'); // divide la fecha por - y obtiene el primero parametro que es el año
         
         datos.name=data.name
         datos.tagline=data.last_episode_to_air.overview
-        datos.first_air_date= año
+        datos.first_air_date= data.first_air_date
         datos.duracion=data.last_episode_to_air.runtime
         
     }
 
     else if (tipo=='movie'){
         
-        const [año, _] = data.release_date.split('-'); // divide la fecha por - y obtiene el primero parametro que es el año
 
         datos.name=data.title
         datos.tagline=data.tagline
-        datos.first_air_date= año
+        datos.first_air_date= data.release_date
         datos.duracion=data.runtime
 
     }
+
+    const [year, _] = datos.first_air_date.split('-'); // divide la fecha por - y obtiene el primero parametro que es el año
+
     
     const url = `https://image.tmdb.org/t/p/w500${data.poster_path}`
 
@@ -88,7 +89,7 @@ export function EstructureInformationDetails(data,tipo){
                             <p class="vote">${data.vote_average.toFixed(1) * 10}% </p>
                         </div>
                         <p class="duracion">${datos.duracion} min </p>
-                        <p class="date">${datos.first_air_date}</p>
+                        <p class="date">${year}</p>
                     
                     </div>
                     <div class="generosMovieDetail">
