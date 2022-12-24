@@ -2,7 +2,7 @@
     width: 76%;
     margin: 10px auto;
     padding: 10px;
-    border: solid 1px red;
+    
     
     
 }
@@ -14,7 +14,6 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    border: solid 1px red ;
     
 
 }
