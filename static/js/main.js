@@ -7,6 +7,7 @@ const containerTrendingTV= document .querySelector('.container-trending-tv' );
 const containerCategories= document .querySelector('.container-categories' );
 const containerUpcoming= document .querySelector('.container-upcoming' );
 const containerCategoryMovies = document.querySelector('.container-category-movies');
+const containerCategoryMoviesAll=document.querySelector(".container-category")
 const cointainerTitle=document.querySelector(".title-container-category")
 const containerMovieSearch = document.querySelector('.container-search-movies');
 const containerTitleSearch= document.querySelector(".title-container-search h2")
@@ -124,7 +125,9 @@ export function HomePage(){
 export function DetailsMoviePage(){
 
     containerHome.classList.add("oculto")
+    containerCategoryMoviesAll.classList.add('oculto')
     containerDetailsMovie.classList.remove("oculto")
+
 
     const url = location.hash.slice(1).toLocaleLowerCase().split('=')[1]
     const id = url.split('-')[0]
