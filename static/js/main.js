@@ -167,7 +167,6 @@ function  getMovieDetails(id){
         containerDetailsMovie.appendChild(div)
 
         // Recorre los generos y  los muestra
-        contenedorGeneros.innerHTML=''
         genres.forEach(genre =>{
             const {name,id} = genre
             console.log(name)
