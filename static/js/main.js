@@ -376,8 +376,20 @@ function getProfile(){
     por cuestiones de evitar caracteres raros.
     Se recomienda usar decodeURL para quitarlo */
     conexion(`person/${id}`).then((data)=>{
-        console.log(data)
-        const {name, biography, profile_path, birthday, place_of_birth,} = data
+
+        let {name, biography, profile_path, birthday, place_of_birth,} = data
+
+        if(biography === ''){
+            biography = 'No hay información disponible'
+        }
+        if(birthday === null){
+            birthday = '-'
+        }
+
+        if(place_of_birth === null){
+            place_of_birth = '-'
+        }
+
 
         const url = `https://image.tmdb.org/t/p/w200${profile_path}`
         const div = document.createElement('div')
@@ -390,21 +402,39 @@ function getProfile(){
             <div class="container-info-profile">
                 <h2>${name}</h2>
 
-                
-                <p>${place_of_birth} ${birthday}</p>
-                <p>${biography}</p>
+
+                <p class="birth-profile" >${place_of_birth} ${birthday}</p>
+                <p class="biography"></p>
                 
                 
             </div>
         </div>
         <div class="container-known-for">
             <h2>Known For</h2>
-            <div class="container-known-for-movies">
+            <div class="container-known-for-movies containerMovies">
             </div>
         </div>
         `
 
         profileContainer.appendChild(div)
+        
+        document.querySelector('.biography').innerText = biography; // para que el texto tome los saltos de  linea
+        
+        // obtener las peliculas donde es participe la persona 
+        conexion(`person/${id}/movie_credits`).then((data)=>{
+            const movies = data.cast
+            const containerMovies = document.querySelector('.container-known-for-movies')
+            movies.forEach(movie => {
+                const {title, poster_path, id} = movie
+                const url = `https://image.tmdb.org/t/p/w200${poster_path}`
+                const div = document.createElement('div')
+                div.classList.add('container-movie')
+                // div.classList.add('')
+                div.innerHTML = `<img src="${url}" alt="Imagen ${id}" onclick="imgSeleccionada(${id})">`
+                containerMovies.appendChild(div)
+            })
+        }
+        )
 
     })
 
