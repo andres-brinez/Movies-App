@@ -160,7 +160,7 @@ async function getMoviesBycategory(){
             const url = `https://image.tmdb.org/t/p/w200${poster_path}`
             const div = document.createElement('div')
             div.classList.add('container-movie')
-            div.innerHTML = `<img src="${url}" alt="Imagen ${id}">`
+            div.innerHTML = `<img src="${url}" alt="Imagen ${id}" onclick="imgSeleccionada(${id})">`
             containerCategoryMovies.appendChild(div)
 
         })
