@@ -37,6 +37,13 @@ export function DetailsMoviePage(){
     getMovieDetails(id)
 }
 
+export function ProfilePage(){
+    containerHome.classList.add("oculto")
+    containerCategoryMoviesAll.classList.add('oculto')
+    containerDetailsMovie.classList.add("oculto")
+    // containerProfile.classList.remove("oculto")
+    getProfile()
+}
 
 
 function getMoviesBycategory(){
@@ -114,8 +121,6 @@ function getMovieBySearch(){
         }        
     })
 }
-
-// obtiene la  pelicula con el id  
 
 function  getMovieDetails(id){
     
@@ -359,6 +364,47 @@ function getCategories(){
             })
 
         })
+
+    })
+
+}
+
+function getProfile(){
+    const url = location.hash.slice(1).toLocaleLowerCase().split('=')[1]
+    const id = url.split('-')[0]
+    /*usualmente un % seguido de dos números quieren decir que un string fue codificado para formar parte de un URI,
+    por cuestiones de evitar caracteres raros.
+    Se recomienda usar decodeURL para quitarlo */
+    conexion(`person/${id}`).then((data)=>{
+        console.log(data)
+        const {name, biography, profile_path, birthday, place_of_birth,} = data
+
+        const url = `https://image.tmdb.org/t/p/w200${profile_path}`
+        const div = document.createElement('div')
+        div.classList.add('profile')
+        div.innerHTML = `
+        <div class="container-profile">
+            <div class="container-img-profile">
+                <img src="${url}" alt="Imagen ${name}">
+            </div>
+            <div class="container-info-profile">
+                <h2>${name}</h2>
+
+                
+                <p>${place_of_birth} ${birthday}</p>
+                <p>${biography}</p>
+                
+                
+            </div>
+        </div>
+        <div class="container-known-for">
+            <h2>Known For</h2>
+            <div class="container-known-for-movies">
+            </div>
+        </div>
+        `
+
+        profileContainer.appendChild(div)
 
     })
 
