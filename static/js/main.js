@@ -378,16 +378,17 @@ function getProfile(){
     conexion(`person/${id}`).then((data)=>{
 
         let {name, biography, profile_path, birthday, place_of_birth,} = data
+        console.log(data)
 
         if(biography === ''){
             biography = 'No hay información disponible'
         }
         if(birthday === null){
-            birthday = '-'
+            birthday = ''
         }
 
         if(place_of_birth === null){
-            place_of_birth = '-'
+            place_of_birth = ''
         }
 
 
