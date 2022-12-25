@@ -60,6 +60,14 @@ export function SeriesPage(){
 }
 
 
+export function PersonPage(){
+
+    containerHome.classList.add("oculto")
+    containerDetails.classList.add("oculto")
+    containerCategoryMoviesAll.classList.remove('oculto')
+    getPersons()
+}
+
 function getMoviesBycategory(){
 
    
@@ -87,6 +95,27 @@ function getTVPopular(){
     cointainerTitle.innerHTML = `<h2> Series TV</h2>`
     conexion(`tv/popular`).then((data) => {
         ImagenesSeguidas(data,'tv')
+    })
+}
+
+function getPersons(){
+    cointainerTitle.innerHTML = `<h2> Personas</h2>`
+    conexion(`/person/popular`).then((data) => {
+        // ImagenesSeguidas(data,'tv')
+        
+        containerCategoryMovies.innerHTML = ''
+        data.results.forEach(persona => {
+            console.log(persona)
+            
+            const {profile_path,id,name}= persona
+
+            const url = `https://image.tmdb.org/t/p/w200${profile_path}`
+            const div = document.createElement('div')
+            div.classList.add('container-movie')
+            div.innerHTML = `<a  href="#profile=${id}"><img src="${url}" class="img-cast" alt="Imagen ${name}">>`
+            containerCategoryMovies.appendChild(div)
+
+        })
     })
 }
 
