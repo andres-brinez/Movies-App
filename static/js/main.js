@@ -1,5 +1,5 @@
 import { slider} from "./slider.js";
-import { EstructureInformationDetails,scroll } from "../utils/main.js";
+import { EstructureInformationDetails,scroll,ImagenesSeguidas } from "../utils/main.js";
 
 
 export function categoryPage(){
@@ -51,38 +51,42 @@ export function ProfilePage(){
 }
 
 
+export function SeriesPage(){
+
+    containerHome.classList.add("oculto")
+    containerDetails.classList.add("oculto")
+    containerCategoryMoviesAll.classList.remove('oculto')
+    getTVPopular()
+}
+
+
 function getMoviesBycategory(){
 
-    const url = location.hash.slice(1).toLocaleLowerCase().split('=')[1]
-    const id = url.split('-')[0]
-    /*usualmente un % seguido de dos números quieren decir que un string fue codificado para formar parte de un URI,
-    por cuestiones de evitar caracteres raros.
-    Se recomienda usar decodeURL para quitarlo */
-    let name = decodeURI(url.split('-')[1])
-    const newName= name.charAt(0).toUpperCase() + name.slice(1);  // pone en mayuscula la  primera letra
+   
+        const url = location.hash.slice(1).toLocaleLowerCase().split('=')[1]
+        const id = url.split('-')[0]
+        /*usualmente un % seguido de dos números quieren decir que un string fue codificado para formar parte de un URI,
+        por cuestiones de evitar caracteres raros.
+        Se recomienda usar decodeURL para quitarlo */
+        let name = decodeURI(url.split('-')[1])
+        Name= name.charAt(0).toUpperCase() + name.slice(1);  // pone en mayuscula la  primera letra
 
-    console.log(newName)
-    
-    cointainerTitle.innerHTML = `<h2>${newName}</h2>`
-    
-    
-    conexion(`discover/movie?with_genres=${id}`).then((data) => {
-        const peliculas = data.results
-        containerCategoryMovies.innerHTML = ''
-        peliculas.forEach(pelicula => {
-            console.log(pelicula)
-            
-            const {poster_path,id}= pelicula
-    
-            const url = `https://image.tmdb.org/t/p/w200${poster_path}`
-            const div = document.createElement('div')
-            div.classList.add('container-movie')
-            div.innerHTML = `<img src="${url}" alt="Imagen ${id}" onclick="imgSeleccionada(${id})">`
-            containerCategoryMovies.appendChild(div)
-
+        conexion(`discover/movie?with_genres=${id}`).then((data) => {
+            ImagenesSeguidas(data)
         })
 
         
+        cointainerTitle.innerHTML = `<h2>${Name}</h2>`
+    
+    
+
+    
+}
+
+function getTVPopular(){
+    cointainerTitle.innerHTML = `<h2> Series TV</h2>`
+    conexion(`tv/popular`).then((data) => {
+        ImagenesSeguidas(data,'tv')
     })
 }
 
