@@ -12,6 +12,8 @@ export function categoryPage(){
 
 export function MoviePage(){
     containerHome.classList.remove("see")
+    profileContainer.classList.add('oculto')
+
     getMovieBySearch()
 
 }
@@ -299,7 +301,7 @@ function getProfile(){
             </div>
         </div>
         `
-
+        profileContainer.innerHTML = ''
         profileContainer.appendChild(div)
         
         document.querySelector('.biography').innerText = biography; // para que el texto tome los saltos de  linea
