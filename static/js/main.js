@@ -101,7 +101,7 @@ function getTVPopular(){
 }
 
 function getPersons(){
-    cointainerTitle.innerHTML = `<h2> Personas</h2>`
+    cointainerTitle.innerHTML = `<h2> Featured actors</h2>`
     conexion(`/person/popular`).then((data) => {
         // ImagenesSeguidas(data,'tv')
         
