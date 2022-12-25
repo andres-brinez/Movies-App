@@ -103,12 +103,18 @@ function getTVPopular(){
 function getPersons(){
     profileContainer.innerHTML = ''
     cointainerTitle.innerHTML = `<h2> Featured actors </h2>`
-    conexion(`/person/popular`).then((data) => {
-        // ImagenesSeguidas(data,'tv')
-        
-        containerCategoryMovies.innerHTML = ''
+    containerCategoryMovies.innerHTML = ''
+
+
+    for (let i = 1; i < 200; i++){
+        conexion(`/person/popular?page=${i}`).then((data) => {
+            showPerson(data)
+            
+        })      
+    }
+
+    function showPerson(data){
         data.results.forEach(persona => {
-            console.log(persona)
             
             const {profile_path,id,name}= persona
 
@@ -119,7 +125,8 @@ function getPersons(){
             containerCategoryMovies.appendChild(div)
 
         })
-    })
+
+    }
 }
 
 function getMovieBySearch(){
