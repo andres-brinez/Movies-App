@@ -1,7 +1,7 @@
 /* Esto para evitar llamar a las funciones automáticamente para que se ejecuten, 
 sino que lo podamos borrar en el futuro y podamos en el file de navigation.js, 
 llamarlas cuando location y hashchange nos avisen que estamos en la vista principal o en alguna otra vista */
-import { HomePage,categoryPage,MoviePage,DetailsMoviePage,ProfilePage } from "./main.js";
+import { HomePage,categoryPage,MoviePage,DetailsMoviePage,ProfilePage,SeriesPage } from "./main.js";
 
 
 
@@ -28,6 +28,11 @@ function navigation() {
     else if (location.hash.startsWith("#category")){
         console.log('category');
         categoryPage()
+    }
+
+    else if (location.hash.startsWith("#series/popular")){
+        console.log('tv/popular');
+        SeriesPage()
     }
 
     else{
