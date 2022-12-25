@@ -136,7 +136,6 @@ export function EstructureInformationDetails(data,tipo){
 
 export function ImagenesSeguidas(data,tipo){
     const peliculas = data.results
-    containerCategoryMovies.innerHTML = ''
     peliculas.forEach(pelicula => {
         
         const {poster_path,id}= pelicula
