@@ -94,10 +94,18 @@ function getMoviesBycategory(){
 }
 
 function getTVPopular(){
+    containerCategoryMovies.innerHTML = ''
     cointainerTitle.innerHTML = `<h2> Series TV</h2>`
-    conexion(`tv/popular`).then((data) => {
-        ImagenesSeguidas(data,'tv')
-    })
+    // conexion(`tv/popular`).then((data) => {
+    //     ImagenesSeguidas(data,'tv')
+    // })
+
+    for (let i = 1; i < 100; i++){
+        conexion(`tv/popular?page=${i}`).then((data) => {
+            ImagenesSeguidas(data,'tv')
+            
+        })
+    }      
 }
 
 function getPersons(){
