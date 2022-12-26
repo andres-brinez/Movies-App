@@ -278,19 +278,28 @@ function getProfile(){
     Se recomienda usar decodeURL para quitarlo */
     conexion(`person/${id}`).then((data)=>{
 
+        let YearNacimiento=''
+
         let {name, biography, profile_path, birthday, place_of_birth,} = data
 
-        const [Nacimiento, _] = data.birthday.split('-'); // divide la fecha por - y obtiene el primero parametro que es el año
+        if (data.birthday==null){
+            birthday=''
+        }
+        else{
+            const [Nacimiento, _] = data.birthday.split('-'); // divide la fecha por - y obtiene el primero parametro que es el año
+            YearNacimiento = Nacimiento
+        }
 
         if(biography === ''){
             biography = 'No hay información disponible'
         }
-        if(birthday === null){
+        if(birthday === null ){
             birthday = ''
         }
 
         if(place_of_birth === null){
             place_of_birth = ''
+
         }
 
 
@@ -300,12 +309,12 @@ function getProfile(){
         div.innerHTML = `
         <div class="container-profile">
             <div class="container-img-profile">
-                <img src="${url}" alt="Imagen ${name}">
+                <img onerror="this.src='https://cdn-icons-png.flaticon.com/512/4380/4380656.png';" src="${url}" alt="Imagen ${name}">
             </div>
             <div class="container-info-profile">
                 <h2>${name}</h2>
 
-                <p class="birth-profile" >${place_of_birth} ${Nacimiento}</p>
+                <p class="birth-profile" >${place_of_birth} ${YearNacimiento}</p>
                 <p class="biography"></p>
                 
                 
@@ -332,7 +341,7 @@ function getProfile(){
                 const div = document.createElement('div')
                 div.classList.add('container-movie')
                 // div.classList.add('')
-                div.innerHTML = `<img src="${url}" alt="Imagen ${id}" onclick="imgSeleccionada(${id})">`
+                div.innerHTML = `<img src="${url}"  onerror="this.src='https://cdn-icons-png.flaticon.com/512/4380/4380656.png';"  alt="Imagen ${id}" onclick="imgSeleccionada(${id})">`
                 containerMovies.appendChild(div)
             })
         }
