@@ -28,6 +28,7 @@ header {
     align-items: center;
     max-width: 1200px;
     margin: auto;
+    /* border:solid 1px red  */
     /* centrar vertica l */
 
 }
@@ -55,8 +56,8 @@ header {
 .nav ul li a {
     text-decoration: none;
     color: #fff;
-    font-size: 18px;
-    font-weight: 500;
+    font-size: 42px;
+    font-weight: bolder;
 }
 
 .container-search {
