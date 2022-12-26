@@ -341,7 +341,7 @@ function getProfile(){
                 const div = document.createElement('div')
                 div.classList.add('container-movie')
                 // div.classList.add('')
-                div.innerHTML = `<img src="${url}"  onerror="this.src='https://cdn-icons-png.flaticon.com/512/4380/4380656.png';"  alt="Imagen ${id}" onclick="imgSeleccionada(${id})">`
+                div.innerHTML = `<img src="${url}"  onerror="this.src='https://cdn-icons-png.flaticon.com/512/4380/4380656.png';"  alt="Imagen ${title} " onclick="imgSeleccionada(${id})">`
                 containerMovies.appendChild(div)
             })
         }
