@@ -155,13 +155,13 @@ img{
 @media (max-width: 700px) {
 
     header{
-        min-height: 210px;
-        border: solid 1px red;
+        /* min-height: 210px; */
+        border: solid 1px blue;
     }
 
     
-    .container {
+    /* .container {
         flex-direction: column;
     
-    }
+    } */
 }
