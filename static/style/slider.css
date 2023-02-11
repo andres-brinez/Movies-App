@@ -106,7 +106,7 @@
     /* conteiner del slider */
   .slideshow-container {
     width: 80%;
-    border:solid 1px red ;
+    margin-top: 150px;
 
   }
   }
