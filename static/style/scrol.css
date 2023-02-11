@@ -115,7 +115,15 @@
 @media (max-width: 717px) {
 
 
+    /* el tamaño de la imagen cambia */
     .carousel>div{
         min-width: 90%;
     }
+
+    /* el carouel es mas alto */
+    .carousel{
+        height: 378px;
+    }
+
+
 }
