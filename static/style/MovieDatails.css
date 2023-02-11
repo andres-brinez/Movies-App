@@ -139,4 +139,14 @@
 }
 
 
+@media (max-width: 717px) {
+
+
+    .information-main{
+        flex-direction: column;
+    }
+}
+
+
+
 
