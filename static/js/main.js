@@ -79,7 +79,8 @@ function getMoviesBycategory(){
         por cuestiones de evitar caracteres raros.
         Se recomienda usar decodeURL para quitarlo */
         let name = decodeURI(url.split('-')[1])
-        Name= name.charAt(0).toUpperCase() + name.slice(1);  // pone en mayuscula la  primera letra
+        console.log(name)
+        const Name= name.charAt(0).toUpperCase() + name.slice(1);  // pone en mayuscula la  primera letra
 
         conexion(`discover/movie?with_genres=${id}`).then((data) => {
             ImagenesSeguidas(data)
