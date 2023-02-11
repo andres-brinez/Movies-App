@@ -152,10 +152,11 @@ img{
     cursor: pointer;
 }
 
-@media (max-width: 500px) {
+@media (max-width: 400px) {
 
     header{
         min-height: 210px;
+        border: solid 1px red;
     }
 
     
