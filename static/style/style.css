@@ -153,6 +153,12 @@ img{
 }
 
 @media (max-width: 600px) {
+
+    header{
+        min-height: 210px;
+    }
+
+    
    
     .container {
         flex-direction: column;
