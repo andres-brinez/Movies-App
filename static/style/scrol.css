@@ -109,3 +109,13 @@
     transform: scale(1.1);
     transition: all 0.5s ease;
 }
+
+
+
+@media (max-width: 717px) {
+
+
+    .carousel>div{
+        min-width: 90%;
+    }
+}
