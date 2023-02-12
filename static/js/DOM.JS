@@ -1,9 +1,4 @@
 const containerHome=document.querySelector(".container-Home")
-const containerSlider= document .querySelector('.slideshow-container' );
-const containerTrendingMovies= document .querySelector('.container-trending' );
-const containerTrendingTV= document .querySelector('.container-trending-tv' );
-const containerCategories= document .querySelector('.container-categories' );
-const containerUpcoming= document .querySelector('.container-upcoming' );
 const containerCategoryMovies = document.querySelector('.container-category-movies');
 const containerCategoryMoviesAll=document.querySelector(".container-category")
 const cointainerTitle=document.querySelector(".title-container-category")
