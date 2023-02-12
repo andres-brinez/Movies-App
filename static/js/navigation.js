@@ -2,15 +2,22 @@
 sino que lo podamos borrar en el futuro y podamos en el file de navigation.js, 
 llamarlas cuando location y hashchange nos avisen que estamos en la vista principal o en alguna otra vista */
 // import { HomePage,categoryPage,MoviePage,DetailsMoviePage,ProfilePage,SeriesPage,PersonPage } from "./main.js";
-import  {Home } from "../components/Home.js" 
+
+import { Home } from "../components/Home.js" 
+import { SearchPage } from "../components/SearchPage.js";
 
 
 function navigation() {
     
+    
+    if (location.hash.includes("Home") || (location.hash.length==0) ){
+        console.log('home');
+        Home()
 
-    if (location.hash.startsWith("#search")){
-        // MoviePage()
-        pass
+    }
+
+    else if (location.hash.startsWith("#search")){
+        SearchPage()        
         
     }
 
@@ -41,11 +48,7 @@ function navigation() {
 
     // }
 
-    else{
-        console.log('home');
-        Home()
 
-    }
     
 }
 
