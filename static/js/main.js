@@ -1,4 +1,4 @@
-import { slider} from "./slider.js";
+import { slider} from "../utils/slider.js";
 import { EstructureInformationDetails,scroll,ImagenesSeguidas } from "../utils/main.js";
 
 
