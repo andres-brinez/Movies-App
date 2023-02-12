@@ -1,9 +1,19 @@
 .loadSlider{
-    min-height: 400px;
+    min-height: 600px;
     margin-top: 15%;
-    min-width: 100%;
+    min-width: 90%;
     background-color: #eeeaf2;
     animation: loading-skeleton infinite 1.5s;
+}
+
+.scrollLoading{
+    height: 300px;
+    width: 100%;
+    animation: loading-skeleton infinite 1.5s;
+    background-color: #eeeaf2;
+
+
+    
 }
 
 .loadContainerSeguido{
