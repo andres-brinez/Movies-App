@@ -7,7 +7,7 @@ import { Home } from "../components/Home.js"
 import { SearchPage } from "../components/SearchPage.js";
 import { detailsPage} from "../components/Details.js"
 import { profilePage } from "../components/ProlilePage.js";
-
+import { categoryPage } from "../components/categoryPage.js";
 
 function navigation() {
     
@@ -34,10 +34,10 @@ function navigation() {
     }
 
 
-    // else if (location.hash.startsWith("#category")){
-    //     console.log('category');
-    //     categoryPage()
-    // }
+    else if (location.hash.startsWith("#category")){
+        console.log('category');
+        categoryPage()
+    }
 
     // else if (location.hash.startsWith("#series/popular")){
     //     console.log('tv/popular');
