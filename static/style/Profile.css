@@ -67,3 +67,27 @@
     transition: all 0.5s ease;
 }
 
+.container-profile{
+    display: flex;
+    
+}
+
+@media (max-width: 717px) {
+
+    .container-profile{
+        flex-direction: column;
+        
+    }
+
+    .container-img-profile{
+    
+        width: 90%;
+        
+    }
+
+
+    
+    
+
+}
+
