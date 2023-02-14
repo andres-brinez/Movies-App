@@ -2,13 +2,8 @@
 // import { EstructureInformationDetails,scroll,ImagenesSeguidas } from "../utils/main.js";
 
 
-// export function categoryPage(){
+    
 
-//     containerHome.classList.add("oculto")
-//     containerDetails.classList.add("oculto")
-//     containerCategoryMoviesAll.classList.remove('oculto')
-//     getMoviesBycategory()
-// }
 
 // export function MoviePage(){
 //     containerHome.classList.remove("see")
