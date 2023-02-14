@@ -131,8 +131,16 @@
 .trailer{
     display: flex;
     justify-content: center;
-    margin: 20px 0;
+    margin: 20px auto;
+    width: 90%;
+    height: 500px;
 }
+
+iframe{   
+  width: 100%;
+  height: 100%;
+}
+
 
 .containerRelated.containerMovies{
     width: 100% !important;
@@ -144,6 +152,11 @@
 
     .information-main{
         flex-direction: column;
+    }
+
+    .trailer{
+        width: 95%;
+        height: 200px;
     }
 }
 
