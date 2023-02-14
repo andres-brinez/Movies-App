@@ -5,7 +5,8 @@ llamarlas cuando location y hashchange nos avisen que estamos en la vista princi
 
 import { Home } from "../components/Home.js" 
 import { SearchPage } from "../components/SearchPage.js";
-import  { detailsPage} from "../components/Details.js"
+import { detailsPage} from "../components/Details.js"
+import { profilePage } from "../components/ProlilePage.js";
 
 
 function navigation() {
@@ -27,10 +28,10 @@ function navigation() {
     }
  
 
-    // else if (location.hash.startsWith("#profile")){
-    //     console.log('profile');
-    //     ProfilePage()
-    // }
+    else if (location.hash.startsWith("#profile")){
+        console.log('profile');
+        profilePage()
+    }
 
 
     // else if (location.hash.startsWith("#category")){
