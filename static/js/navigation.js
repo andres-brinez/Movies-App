@@ -9,6 +9,7 @@ import { detailsPage} from "../components/Details.js"
 import { profilePage } from "../components/ProlilePage.js";
 import { categoryPage } from "../components/categoryPage.js";
 import { getPopular } from "../components/SeriesPopularPage.js";
+import { actors } from "../components/Actors.js";
 
 function navigation() {
     
@@ -45,11 +46,12 @@ function navigation() {
         getPopular()
     }
 
-    // else if (location.hash.startsWith("#person/popular")){
-    //     console.log('home');
-    //     PersonPage()
+    else if (location.hash.startsWith("#person/popular")){
+        console.log('actore');
+        actors()
 
-    // }
+
+    }
 
 
     
