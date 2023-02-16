@@ -3,6 +3,7 @@ sino que lo podamos borrar en el futuro y podamos en el file de navigation.js,
 llamarlas cuando location y hashchange nos avisen que estamos en la vista principal o en alguna otra vista */
 // import { HomePage,categoryPage,MoviePage,DetailsMoviePage,ProfilePage,SeriesPage,PersonPage } from "./main.js";
 
+
 import { Home } from "../components/Home.js" 
 import { SearchPage } from "../components/SearchPage.js";
 import { detailsPage} from "../components/Details.js"
@@ -15,46 +16,46 @@ function navigation() {
     
     
     if (location.hash.includes("Home") || (location.hash.length==0) ){
-        console.log('home');
+
+        document.title = "Home";        
         Home()
 
     }
 
     else if (location.hash.startsWith("#search")){
-        SearchPage()        
+        document.title = "Search"
+        SearchPage()   
+
         
     }
 
     else if (location.hash.startsWith("#movie") || location.hash.startsWith("#tv")){
+        document.title = "Details"
         detailsPage()
     }
  
 
     else if (location.hash.startsWith("#profile")){
-        console.log('profile');
+        document.title = "Profile"
         profilePage()
     }
 
 
     else if (location.hash.startsWith("#category")){
-        console.log('category');
+        document.title = "Category"
         categoryPage()
     }
 
     else if (location.hash.startsWith("#series/popular")){
-        console.log('tv/popular');
+        document.title = "Series"
         getPopular()
     }
 
     else if (location.hash.startsWith("#person/popular")){
-        console.log('actore');
+        document.title = "Actores"
         actors()
-
-
     }
 
-
-    
 }
 
 
